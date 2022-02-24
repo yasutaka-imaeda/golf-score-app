@@ -1,0 +1,25 @@
+.root {
+  .container {
+    .searchTitle {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .form {
+      display: flex;
+      align-items: center;
+      // background-color: red;
+      .input {
+        height: 30px;
+        width: 500px;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
+      .btn {
+        height: 35px;
+        width: 80px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
