@@ -1,0 +1,57 @@
+.root {
+  .container {
+    .header {
+    }
+    .inputScore {
+      .halfCourse {
+        display: flex;
+        justify-content: space-around;
+      }
+      .pagenate {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-top: 62px;
+        font-size: 20px;
+        ul {
+          padding: 0;
+          margin: 0;
+          user-select: none;
+          li {
+            display: inline;
+            cursor: pointer;
+          }
+          .link {
+            display: inline-block;
+            text-align: center;
+            width: 25px;
+            height: 25px;
+          }
+          .activeLink {
+            background-color: #84b347;
+            color: #ffffff;
+          }
+          .previous {
+            margin-right: 8px;
+          }
+          .next {
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+    // .outCourse {
+    //   .halfCourse {
+    //     display: flex;
+    //     justify-content: space-around;
+    //   }
+    // }
+    // .inCourse {
+    //   .halfCourse {
+    //     display: flex;
+    //     justify-content: space-around;
+    //   }
+    // }
+  }
+}

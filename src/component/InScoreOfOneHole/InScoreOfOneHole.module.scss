@@ -1,0 +1,52 @@
+.root {
+  margin-top: 30px;
+  .container {
+    // display: flex;
+    // flex-flow: column;
+    .holeNumber {
+      width: 150px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    .inputWrapper {
+      width: 150px;
+      display: flex;
+      border: 1px solid black;
+      background-color: #dbfdd6;
+      border-radius: 5px;
+      padding: 5px;
+      .inputBox {
+        width: 70px;
+        text-align: center;
+        margin-bottom: 40px;
+        .inputScore {
+          width: 50px;
+          font-size: 5px;
+        }
+      }
+      .buttonGroup {
+        width: 70px;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      .patWrapper {
+        .inputPatBox {
+          width: 40px;
+          margin-bottom: 5px;
+          margin-left: 20px;
+          .patTitile {
+            font-size: 5px;
+          }
+        }
+        .patButtonGroup {
+          .patButton {
+            width: 10px;
+          }
+        }
+      }
+    }
+  }
+}
