@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/cli": "7.6.4",
+    "@aws-amplify/ui-react": "^2.6.2",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.2",
@@ -16,6 +18,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.7",
+    "aws-amplify": "^4.3.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-paginate": "^8.1.2",

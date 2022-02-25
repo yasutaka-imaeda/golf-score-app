@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-golfscoreapp-dev-174639-authRole",
+      "UnauthRoleArn": "arn:aws:iam::789475676848:role/amplify-golfscoreapp-dev-174639-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::789475676848:role/amplify-golfscoreapp-dev-174639-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-golfscoreapp-dev-174639-deployment",
+      "UnauthRoleName": "amplify-golfscoreapp-dev-174639-unauthRole",
+      "StackName": "amplify-golfscoreapp-dev-174639",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:789475676848:stack/amplify-golfscoreapp-dev-174639/76138e10-9617-11ec-92af-0a82db0f8b95",
+      "AmplifyAppId": "d2ouqtaygazu8w"
+    },
+    "categories": {
+      "auth": {
+        "golfscoreapp7dd71889": {}
+      }
+    }
+  }
+}

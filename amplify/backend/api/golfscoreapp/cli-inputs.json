@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "golfscoreapp",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/imaedayasutaka/Desktop/study_programming/golf-score-app/amplify/backend/api/golfscoreapp/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-02-25T08:53:44.038Z",
+      "keyDescription": ""
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authgolfscoreapp7dd71889"
+      },
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
+  }
+}
