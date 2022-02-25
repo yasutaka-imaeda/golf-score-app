@@ -6,7 +6,15 @@
     .holeNumber {
       width: 150px;
       text-align: center;
+      // margin-bottom: 5px;
+    }
+    .parNumber {
+      margin-left: 60%;
+      margin-right: 0;
       margin-bottom: 5px;
+      .parNumberInput {
+        width: 20px;
+      }
     }
     .inputWrapper {
       width: 150px;

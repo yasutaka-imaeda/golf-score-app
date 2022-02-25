@@ -13,8 +13,18 @@ type Props = {
 const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
   const [count, setCount] = useState<number>(0);
   const [patCount, setPatCount] = useState<number>(0);
+  const [parNumber, setParNumber] = useState<number>(0);
   const inScoreValue: any = document.getElementById(`inputScore${hole}`);
   const inPatScoreValue: any = document.getElementById(`inputPatScore${hole}`);
+  const inParNumberValue: any = document.getElementById(
+    `inputparNumber${hole}`
+  );
+  useEffect(() => {
+    if (inParNumberValue) {
+      inParNumberValue.value = parNumber;
+    }
+  });
+
   useEffect(() => {
     if (inPatScoreValue) {
       inPatScoreValue.value = patCount;
@@ -30,6 +40,14 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
     <div className={styles.root}>
       <div className={styles.container}>
         <div className={styles.holeNumber}>{hole}ホール</div>
+        <div className={styles.parNumber}>
+          パー
+          <input
+            className={styles.parNumberInput}
+            id={`inputParNumber${hole}`}
+            onChange={(e: any) => setParNumber(e.target.value)}
+          ></input>
+        </div>
         <div className={styles.inputWrapper}>
           <div className={styles.patWrapper}>
             <div className={styles.inputBox}>
