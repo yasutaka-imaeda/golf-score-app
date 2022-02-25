@@ -35,3 +35,144 @@ export const onDeleteTodo = /* GraphQL */ `
     }
   }
 `;
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser {
+    onCreateUser {
+      id
+      golferName
+      Ave
+      Ave10Course
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser {
+    onUpdateUser {
+      id
+      golferName
+      Ave
+      Ave10Course
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser {
+    onDeleteUser {
+      id
+      golferName
+      Ave
+      Ave10Course
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateScore = /* GraphQL */ `
+  subscription OnCreateScore {
+    onCreateScore {
+      id
+      userId
+      score
+      courseId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateScore = /* GraphQL */ `
+  subscription OnUpdateScore {
+    onUpdateScore {
+      id
+      userId
+      score
+      courseId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteScore = /* GraphQL */ `
+  subscription OnDeleteScore {
+    onDeleteScore {
+      id
+      userId
+      score
+      courseId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateCourse = /* GraphQL */ `
+  subscription OnCreateCourse {
+    onCreateCourse {
+      id
+      userId
+      courseName
+      parNumber
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateCourse = /* GraphQL */ `
+  subscription OnUpdateCourse {
+    onUpdateCourse {
+      id
+      userId
+      courseName
+      parNumber
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteCourse = /* GraphQL */ `
+  subscription OnDeleteCourse {
+    onDeleteCourse {
+      id
+      userId
+      courseName
+      parNumber
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateFollow = /* GraphQL */ `
+  subscription OnCreateFollow {
+    onCreateFollow {
+      id
+      followId
+      followewId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateFollow = /* GraphQL */ `
+  subscription OnUpdateFollow {
+    onUpdateFollow {
+      id
+      followId
+      followewId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteFollow = /* GraphQL */ `
+  subscription OnDeleteFollow {
+    onDeleteFollow {
+      id
+      followId
+      followewId
+      createdAt
+      updatedAt
+    }
+  }
+`;
