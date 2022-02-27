@@ -3,6 +3,7 @@ import styles from "./Header.module.scss";
 import { Path } from "../../Routes";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { AmplifySignOut } from "@aws-amplify/ui-react";
 
 const Header: React.FC = () => {
   return (
@@ -13,6 +14,12 @@ const Header: React.FC = () => {
       <Button component={Link} to={Path.inputScore}>
         スコア入力ページ遷移
       </Button>
+      <div className={styles.signOut}>
+        <AmplifySignOut
+          buttonText="ログアウト"
+          style={{ width: "50px", margin: "auto" }}
+        />
+      </div>
     </div>
   );
 };

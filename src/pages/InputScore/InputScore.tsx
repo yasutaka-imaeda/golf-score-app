@@ -64,13 +64,14 @@ const InputScore: React.FC = () => {
             activeLinkClassName={styles.activeLink}
             breakLabel="..."
             nextClassName={styles.next}
-            nextLabel=">"
+            nextLabel="IN"
             onPageChange={handlePageClick}
             pageRangeDisplayed={5}
             pageCount={pageCount}
             pageLinkClassName={styles.link}
             previousClassName={styles.previous}
-            previousLabel="<"
+            previousLabel="OUT"
+            disabledClassName="disabled"
             // @ts-ignore
             renderOnZeroPageCount={null}
           />
