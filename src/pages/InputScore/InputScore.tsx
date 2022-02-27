@@ -34,6 +34,7 @@ const InputScore: React.FC = () => {
   };
 
   const PaginatedItems = ({ itemsPerPage }: any) => {
+    const [isPage, setIsPage] = useState(1);
     // We start with an empty list of items.
     const [currentItems, setCurrentItems] = useState(null);
     const [pageCount, setPageCount] = useState(0);
@@ -59,6 +60,11 @@ const InputScore: React.FC = () => {
       console.log(
         `User requested page number ${event.selected}, which is offset ${newOffset}`
       );
+      if (isPage === 1) {
+        setIsPage(2);
+      } else {
+        setIsPage(1);
+      }
       setItemOffset(newOffset);
     };
     return (
@@ -95,6 +101,9 @@ const InputScore: React.FC = () => {
         <div className={styles.inputScore}>
           <PaginatedItems itemsPerPage={1} />
         </div>
+      </div>
+      <div className={styles.caution}>
+        ※ページ変更直後は値が正しく表示されませんが、一つでも値を入力すれば元に戻ります。
       </div>
     </div>
   );
