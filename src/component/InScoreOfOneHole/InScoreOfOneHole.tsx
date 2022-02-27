@@ -35,7 +35,17 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
   });
 
   const holeScore: any = useAppSelector(selectScore);
-  console.log(holeScore);
+  window.setTimeout(() => {
+    const inScoreValue: any =
+      document.getElementById(`inputScore${hole}`) || {};
+    const inPatScoreValue: any =
+      document.getElementById(`inputPatScore${hole}`) || {};
+    const inParNumberValue: any = document.getElementById(
+      `inputparNumber${hole}`
+    );
+    inPatScoreValue.value = holeScore[hole - 1].pat;
+    inScoreValue.value = holeScore[hole - 1].score;
+  }, 10);
 
   useEffect(() => {
     if (inPatScoreValue) {

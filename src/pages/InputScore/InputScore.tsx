@@ -102,9 +102,6 @@ const InputScore: React.FC = () => {
           <PaginatedItems itemsPerPage={1} />
         </div>
       </div>
-      <div className={styles.caution}>
-        ※ページ変更直後は値が正しく表示されませんが、一つでも値を入力すれば元に戻ります。
-      </div>
     </div>
   );
 };
