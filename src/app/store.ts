@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import taskReducer from "./taskSlice";
 import userReducer from "./userSlice";
+import scoreReducer from "./scoreSlice";
 
 export const store = configureStore({
   reducer: {
     task: taskReducer,
     user: userReducer,
+    score: scoreReducer,
   },
 });
 

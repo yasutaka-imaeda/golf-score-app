@@ -5,12 +5,15 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { TextField } from "@mui/material";
+import { useAppDispatch } from "../../app/hooks";
+import { registerScore } from "../../app/scoreSlice";
 
 type Props = {
   hole: number;
 };
 
 const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
+  const dispatch = useAppDispatch();
   const [count, setCount] = useState<number>(0);
   const [patCount, setPatCount] = useState<number>(0);
   const [parNumber, setParNumber] = useState<number>(0);
@@ -28,13 +31,27 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
   useEffect(() => {
     if (inPatScoreValue) {
       inPatScoreValue.value = patCount;
+      dispatch(
+        registerScore({
+          holeNumber: hole,
+          score: Number(count),
+          pat: Number(patCount),
+        })
+      );
     }
-  }, [patCount, inPatScoreValue]);
+  }, [patCount, inPatScoreValue, dispatch, hole, count]);
   useEffect(() => {
     if (inScoreValue) {
       inScoreValue.value = count;
+      dispatch(
+        registerScore({
+          holeNumber: hole,
+          score: Number(count),
+          pat: Number(patCount),
+        })
+      );
     }
-  }, [count, inScoreValue]);
+  }, [count, inScoreValue, dispatch, hole, patCount]);
 
   return (
     <div className={styles.root}>
