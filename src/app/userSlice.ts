@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 // import { useSelector } from "react-redux";
-import { RootState, AppThunk } from "../app/store";
+import { RootState } from "../app/store";
 
 export interface UserState {
   user: {

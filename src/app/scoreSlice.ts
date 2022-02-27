@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 // import { useSelector } from "react-redux";
-import { RootState, AppThunk } from "./store";
+import { RootState } from "./store";
 
 export interface ScoreState {
   score: [
@@ -166,10 +166,32 @@ export const scoreSlice = createSlice({
       state.score[i].score = action.payload.score;
       state.score[i].pat = action.payload.pat;
     },
+    addOneScore: (state, action) => {
+      const i = action.payload - 1;
+      state.score[i].score = state.score[i].score + 1;
+    },
+    rdOneScore: (state, action) => {
+      const i = action.payload - 1;
+      state.score[i].score = state.score[i].score - 1;
+    },
+    addOnePat: (state, action) => {
+      const i = action.payload - 1;
+      state.score[i].pat = state.score[i].pat + 1;
+    },
+    rdOnePat: (state, action) => {
+      const i = action.payload - 1;
+      state.score[i].pat = state.score[i].pat - 1;
+    },
   },
 });
 
-export const { registerScore } = scoreSlice.actions;
+export const {
+  registerScore,
+  addOneScore,
+  rdOneScore,
+  addOnePat,
+  rdOnePat,
+} = scoreSlice.actions;
 
 export const selectScore = (state: RootState): ScoreState["score"] =>
   state.score.score;

@@ -4,8 +4,8 @@ import InputCourse from "../../component/InputCourse/InputCourse";
 import InScoreOfOneHole from "../../component/InScoreOfOneHole/InScoreOfOneHole";
 import styles from "./InputScore.module.scss";
 import ReactPaginate from "react-paginate";
-import { selectScore } from "../../app/scoreSlice";
-import { useAppSelector } from "../../app/hooks";
+// import { selectScore } from "../../app/scoreSlice";
+// import { useAppSelector } from "../../app/hooks";
 
 const InputScore: React.FC = () => {
   const items: any = [1, 2];
@@ -52,6 +52,10 @@ const InputScore: React.FC = () => {
     // Invoke when user click to request another page.
     const handlePageClick = (event: any) => {
       const newOffset = (event.selected * itemsPerPage) % items.length;
+      // const inScoreValue1: any = document.getElementById(`inputScore1`) || {};
+      // const inScoreValue10: any = document.getElementById(`inputScore10`) || {};
+      // inScoreValue1.value = 0;
+      // inScoreValue10.value = 0;
       console.log(
         `User requested page number ${event.selected}, which is offset ${newOffset}`
       );

@@ -6,7 +6,14 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { TextField } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { registerScore, selectScore } from "../../app/scoreSlice";
+import {
+  registerScore,
+  selectScore,
+  addOneScore,
+  rdOneScore,
+  addOnePat,
+  rdOnePat,
+} from "../../app/scoreSlice";
 
 type Props = {
   hole: number;
@@ -14,8 +21,6 @@ type Props = {
 
 const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
   const dispatch = useAppDispatch();
-  const [count, setCount] = useState<number>(0);
-  const [patCount, setPatCount] = useState<number>(0);
   const [parNumber, setParNumber] = useState<number>(0);
   const inScoreValue: any = document.getElementById(`inputScore${hole}`);
   const inPatScoreValue: any = document.getElementById(`inputPatScore${hole}`);
@@ -30,31 +35,16 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
   });
 
   const holeScore: any = useAppSelector(selectScore);
+  console.log(holeScore);
 
   useEffect(() => {
     if (inPatScoreValue) {
-      dispatch(
-        registerScore({
-          holeNumber: hole,
-          score: Number(count),
-          pat: Number(patCount),
-        })
-      );
       inPatScoreValue.value = holeScore[hole - 1].pat;
     }
-  }, [patCount, inPatScoreValue, dispatch, hole, count, holeScore]);
-  useEffect(() => {
     if (inScoreValue) {
-      dispatch(
-        registerScore({
-          holeNumber: hole,
-          score: Number(count),
-          pat: Number(patCount),
-        })
-      );
       inScoreValue.value = holeScore[hole - 1].score;
     }
-  }, [count, inScoreValue, dispatch, hole, patCount, holeScore]);
+  }, [inScoreValue, inPatScoreValue, dispatch, hole, holeScore]);
 
   return (
     <div className={styles.root}>
@@ -80,7 +70,15 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
                   },
                 }}
                 id={`inputScore${hole}`}
-                onChange={(e: any) => setCount(e.target.value)}
+                onChange={(e: any) =>
+                  dispatch(
+                    registerScore({
+                      holeNumber: hole,
+                      score: Number(e.target.value),
+                      pat: holeScore[hole - 1].pat,
+                    })
+                  )
+                }
               />
             </div>
             <div className={styles.buttonGroup}>
@@ -89,7 +87,7 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
                   aria-label="reduce"
                   size="small"
                   onClick={() => {
-                    setCount((num) => num - 1);
+                    dispatch(rdOneScore(hole));
                   }}
                 >
                   <RemoveIcon fontSize="small" />
@@ -98,7 +96,7 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
                   aria-label="increase"
                   size="small"
                   onClick={() => {
-                    setCount((num) => ++num);
+                    dispatch(addOneScore(hole));
                   }}
                 >
                   <AddIcon fontSize="small" />
@@ -119,7 +117,15 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
                   },
                 }}
                 id={`inputPatScore${hole}`}
-                onChange={(e: any) => setPatCount(e.target.value)}
+                onChange={(e: any) =>
+                  dispatch(
+                    registerScore({
+                      holeNumber: hole,
+                      score: holeScore[hole - 1].score,
+                      pat: Number(e.target.value),
+                    })
+                  )
+                }
               />
             </div>
             <div className={styles.patButtonGroup}>
@@ -129,7 +135,7 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
                   className={styles.patButton}
                   size="small"
                   onClick={() => {
-                    setPatCount((num) => num - 1);
+                    dispatch(rdOnePat(hole));
                   }}
                 >
                   <RemoveIcon fontSize="small" />
@@ -139,7 +145,7 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
                   className={styles.patButton}
                   size="small"
                   onClick={() => {
-                    setPatCount((num) => ++num);
+                    dispatch(addOnePat(hole));
                   }}
                 >
                   <AddIcon fontSize="small" />
