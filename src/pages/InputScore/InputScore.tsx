@@ -4,10 +4,12 @@ import InputCourse from "../../component/InputCourse/InputCourse";
 import InScoreOfOneHole from "../../component/InScoreOfOneHole/InScoreOfOneHole";
 import styles from "./InputScore.module.scss";
 import ReactPaginate from "react-paginate";
+import { selectScore } from "../../app/scoreSlice";
+import { useAppSelector } from "../../app/hooks";
 
 const InputScore: React.FC = () => {
   const items: any = [1, 2];
-  const inpuScores = ({ currentItems }: any) => {
+  const inputScores = ({ currentItems }: any) => {
     return (
       <div className={styles.scoreItem}>
         {currentItems && (
@@ -57,7 +59,7 @@ const InputScore: React.FC = () => {
     };
     return (
       <>
-        {inpuScores({ currentItems })}
+        {inputScores({ currentItems })}
         <div className={styles.pagenate}>
           <ReactPaginate
             activeClassName={styles.active}
@@ -92,46 +94,6 @@ const InputScore: React.FC = () => {
       </div>
     </div>
   );
-  // return (
-  //   <div className={styles.root}>
-  //     <div className={styles.container}>
-  //       <div className={styles.header}>
-  //         <Header />
-  //       </div>
-  //       <InputCourse />
-  //       <div className={styles.outCourse}>
-  //         <div className={styles.halfCourse}>
-  //           <InScoreOfOneHole hole={1} />
-  //           <InScoreOfOneHole hole={2} />
-  //           <InScoreOfOneHole hole={3} />
-  //           <InScoreOfOneHole hole={4} />
-  //           <InScoreOfOneHole hole={5} />
-  //         </div>
-  //         <div className={styles.halfCourse}>
-  //           <InScoreOfOneHole hole={6} />
-  //           <InScoreOfOneHole hole={7} />
-  //           <InScoreOfOneHole hole={8} />
-  //           <InScoreOfOneHole hole={9} />
-  //         </div>
-  //       </div>
-  //       <div className={styles.inCourse}>
-  //         <div className={styles.halfCourse}>
-  //           <InScoreOfOneHole hole={10} />
-  //           <InScoreOfOneHole hole={11} />
-  //           <InScoreOfOneHole hole={12} />
-  //           <InScoreOfOneHole hole={13} />
-  //           <InScoreOfOneHole hole={14} />
-  //         </div>
-  //         <div className={styles.halfCourse}>
-  //           <InScoreOfOneHole hole={15} />
-  //           <InScoreOfOneHole hole={16} />
-  //           <InScoreOfOneHole hole={17} />
-  //           <InScoreOfOneHole hole={18} />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default InputScore;
