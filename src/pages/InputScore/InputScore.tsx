@@ -4,8 +4,6 @@ import InputCourse from "../../component/InputCourse/InputCourse";
 import InScoreOfOneHole from "../../component/InScoreOfOneHole/InScoreOfOneHole";
 import styles from "./InputScore.module.scss";
 import ReactPaginate from "react-paginate";
-// import { selectScore } from "../../app/scoreSlice";
-// import { useAppSelector } from "../../app/hooks";
 
 const InputScore: React.FC = () => {
   const items: any = [1, 2];

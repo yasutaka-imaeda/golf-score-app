@@ -2,16 +2,19 @@ import React from "react";
 import styles from "./InputCourse.module.scss";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import { useAppDispatch } from "../../app/hooks";
+import { registerCourseName } from "../../app/courseSlice";
 
 const InputCourse: React.FC = () => {
+  const dispatch = useAppDispatch();
   const course: any = [
-    { label: "ゴルフ場A", Country: "Japan" },
-    { label: "ゴルフ場B", Country: "Japan" },
-    { label: "ゴルフ場C", Country: "Japan" },
-    { label: "ゴルフ場D", Country: "Japan" },
-    { label: "ゴルフ場E", Country: "Japan" },
-    { label: "ゴルフ場F", Country: "Japan" },
-    { label: "ゴルフ場G", Country: "Japan" },
+    { label: "ゴルフ場A" },
+    { label: "ゴルフ場B" },
+    { label: "ゴルフ場C" },
+    { label: "ゴルフ場D" },
+    { label: "ゴルフ場E" },
+    { label: "ゴルフ場F" },
+    { label: "ゴルフ場G" },
   ];
   return (
     <div className={styles.root}>
@@ -29,7 +32,10 @@ const InputCourse: React.FC = () => {
           />
         </div>
         <div className={styles.newCourse}>
-          <TextField label="新たなコースの入力" />
+          <TextField
+            label="新たなコースの入力"
+            onChange={(e: any) => dispatch(registerCourseName(e.target.value))}
+          />
         </div>
       </div>
     </div>

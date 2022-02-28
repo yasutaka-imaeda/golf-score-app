@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./InScoreOfOneHole.module.scss";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
@@ -14,6 +14,7 @@ import {
   addOnePat,
   rdOnePat,
 } from "../../app/scoreSlice";
+import { registerParNumber, selectCourse } from "../../app/courseSlice";
 
 type Props = {
   hole: number;
@@ -21,30 +22,24 @@ type Props = {
 
 const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
   const dispatch = useAppDispatch();
-  const [parNumber, setParNumber] = useState<number>(0);
   const inScoreValue: any = document.getElementById(`inputScore${hole}`);
   const inPatScoreValue: any = document.getElementById(`inputPatScore${hole}`);
   const inParNumberValue: any = document.getElementById(
-    `inputparNumber${hole}`
+    `inputParNumber${hole}`
   );
 
-  useEffect(() => {
-    if (inParNumberValue) {
-      inParNumberValue.value = parNumber;
-    }
-  });
-
   const holeScore: any = useAppSelector(selectScore);
+  const courseInfo: any = useAppSelector(selectCourse);
   window.setTimeout(() => {
     const inScoreValue: any =
       document.getElementById(`inputScore${hole}`) || {};
     const inPatScoreValue: any =
       document.getElementById(`inputPatScore${hole}`) || {};
-    const inParNumberValue: any = document.getElementById(
-      `inputparNumber${hole}`
-    );
+    const inParNumberValue: any =
+      document.getElementById(`inputParNumber${hole}`) || {};
     inPatScoreValue.value = holeScore[hole - 1].pat;
     inScoreValue.value = holeScore[hole - 1].score;
+    inParNumberValue.value = courseInfo.parNumber[hole - 1];
   }, 10);
 
   useEffect(() => {
@@ -54,7 +49,18 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
     if (inScoreValue) {
       inScoreValue.value = holeScore[hole - 1].score;
     }
-  }, [inScoreValue, inPatScoreValue, dispatch, hole, holeScore]);
+    if (inParNumberValue) {
+      inParNumberValue.value = courseInfo.parNumber[hole - 1];
+    }
+  }, [
+    inScoreValue,
+    inPatScoreValue,
+    dispatch,
+    hole,
+    holeScore,
+    inParNumberValue,
+    courseInfo,
+  ]);
 
   return (
     <div className={styles.root}>
@@ -65,7 +71,14 @@ const InScoreOfOneHole: React.FC<Props> = ({ hole }) => {
           <input
             className={styles.parNumberInput}
             id={`inputParNumber${hole}`}
-            onChange={(e: any) => setParNumber(e.target.value)}
+            onChange={(e: any) =>
+              dispatch(
+                registerParNumber({
+                  holeNumber: hole,
+                  parNumber: e.target.value,
+                })
+              )
+            }
           ></input>
         </div>
         <div className={styles.inputWrapper}>
