@@ -19,7 +19,7 @@ const MainPage: React.FC = () => {
         </div>
         <div>メインページ</div>
         {username !== "" ? (
-          <div>ようこそ {username} !!</div>
+          <div>ようこそ {username} さん!!</div>
         ) : (
           <div>ようこそ!!</div>
         )}
