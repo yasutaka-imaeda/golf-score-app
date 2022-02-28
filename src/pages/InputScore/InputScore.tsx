@@ -4,9 +4,15 @@ import InputCourse from "../../component/InputCourse/InputCourse";
 import InScoreOfOneHole from "../../component/InScoreOfOneHole/InScoreOfOneHole";
 import styles from "./InputScore.module.scss";
 import ReactPaginate from "react-paginate";
+import Button from "@mui/material/Button";
 
 const InputScore: React.FC = () => {
   const items: any = [1, 2];
+
+  const submitScore = () => {
+    console.log("submitScore");
+  };
+
   const inputScores = ({ currentItems }: any) => {
     return (
       <div className={styles.scoreItem}>
@@ -98,6 +104,17 @@ const InputScore: React.FC = () => {
         <InputCourse />
         <div className={styles.inputScore}>
           <PaginatedItems itemsPerPage={1} />
+        </div>
+        <div className={styles.btn}>
+          <Button
+            variant="contained"
+            disableElevation
+            color="success"
+            size="large"
+            onClick={submitScore}
+          >
+            登録
+          </Button>
         </div>
       </div>
     </div>
