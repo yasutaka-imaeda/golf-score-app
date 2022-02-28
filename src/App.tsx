@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./App.module.scss";
 import { BrowserRouter } from "react-router-dom";
 import Routess from "./Routes";
-import Amplify from "aws-amplify";
+import Amplify , { API, graphqlOperation } from "aws-amplify";
 // import { withAuthenticator } from "aws-amplify-react";
 import { AmplifyAuthenticator, AmplifySignUp } from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";

@@ -153,3 +153,59 @@ export const listFollows = /* GraphQL */ `
     }
   }
 `;
+export const scoreByUser = /* GraphQL */ `
+  query ScoreByUser(
+    $userId: ID!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelScoreFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    scoreByUser(
+      userId: $userId
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userId
+        score
+        courseId
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const courseByUser = /* GraphQL */ `
+  query CourseByUser(
+    $userId: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelCourseFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    courseByUser(
+      userId: $userId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userId
+        courseName
+        parNumber
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

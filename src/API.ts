@@ -333,6 +333,22 @@ export type ModelFollowConnection = {
   nextToken?: string | null,
 };
 
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type CreateTodoMutationVariables = {
   input: CreateTodoInput,
   condition?: ModelTodoConditionInput | null,
@@ -761,6 +777,55 @@ export type ListFollowsQuery = {
       id: string,
       followId: string,
       followewId: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type ScoreByUserQueryVariables = {
+  userId: string,
+  createdAt?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelScoreFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ScoreByUserQuery = {
+  scoreByUser?:  {
+    __typename: "ModelScoreConnection",
+    items:  Array< {
+      __typename: "Score",
+      id: string,
+      userId: string,
+      score: string,
+      courseId: string,
+      createdAt?: string | null,
+      updatedAt?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type CourseByUserQueryVariables = {
+  userId: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelCourseFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type CourseByUserQuery = {
+  courseByUser?:  {
+    __typename: "ModelCourseConnection",
+    items:  Array< {
+      __typename: "Course",
+      id: string,
+      userId: string,
+      courseName: string,
+      parNumber: string,
       createdAt: string,
       updatedAt: string,
     } | null >,

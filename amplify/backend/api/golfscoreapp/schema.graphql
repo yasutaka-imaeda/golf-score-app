@@ -19,6 +19,11 @@ type User @model {
 type Score @model {
   id: ID!
   userId: ID!
+    @index(
+      name: "byCreateTime"
+      sortKeyFields: ["createdAt"]
+      queryField: "scoreByUser"
+    )
   score: AWSJSON!
   courseId: ID!
   createdAt: AWSDate
@@ -27,7 +32,7 @@ type Score @model {
 
 type Course @model {
   id: ID!
-  userId: ID!
+  userId: ID! @index(name: "byuser", queryField: "courseByUser")
   courseName: String!
   parNumber: AWSJSON!
 }
