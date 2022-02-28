@@ -11,14 +11,10 @@ import { registerParNumber, selectCourse } from "../../app/courseSlice";
 import { registerScore, selectScore } from "../../app/scoreSlice";
 
 const InputScore: React.FC = () => {
-  const holeScore: any = useAppSelector(selectScore);
-  const courseInfo: any = useAppSelector(selectCourse);
   const items: any = [1, 2];
 
   const submitScore = () => {
     console.log("submitScore");
-    console.log(holeScore);
-    console.log(courseInfo);
   };
 
   const inputScores = ({ currentItems }: any) => {
