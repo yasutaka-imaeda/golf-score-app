@@ -25,7 +25,7 @@ type Score @model {
       queryField: "scoreByUser"
     )
   score: AWSJSON!
-  courseId: ID!
+  course: [Course] @hasMany
   createdAt: AWSDate
   updatedAt: AWSDate
 }

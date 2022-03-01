@@ -5,16 +5,21 @@ import styles from "./InputButton.module.scss";
 import Button from "@mui/material/Button";
 import { registerParNumber, selectCourse } from "../../app/courseSlice";
 import { registerScore, selectScore } from "../../app/scoreSlice";
+import { selectUser } from "../../app/userSlice";
+import { createScore } from "../../graphql/mutations";
 
 const InputButton: React.FC = () => {
   const dispatch = useAppDispatch();
   const holeScore: any = useAppSelector(selectScore);
   const courseInfo: any = useAppSelector(selectCourse);
+  const userInfo: any = useAppSelector(selectUser);
 
-  const submitScore = () => {
+  const submitScore = async () => {
     console.log("submitScore");
     console.log(holeScore);
     console.log(courseInfo);
+    console.log(userInfo);
+    // await API.graphql(graphqlOperation( createScore, {input: {}}}))
   };
 
   return (

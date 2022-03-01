@@ -4,12 +4,13 @@ import { RootState } from "../app/store";
 
 export interface UserState {
   user: {
+    id: string;
     userName: string;
   };
 }
 
 const initialState: UserState = {
-  user: { userName: "" },
+  user: { id: "", userName: "" },
 };
 
 export const userSlice = createSlice({

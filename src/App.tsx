@@ -17,14 +17,15 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const [authState, setAuthState] = useState<any>();
   const [user, setUser] = useState<any>();
+  const [userId, setUserId] = useState<any>();
   const [checkUser, setCheckUser] = useState<any>(false);
-  const searchUser = (username: any) => {
+  const searchUser = async (username: any) => {
     const filter = {
       golferName: {
         eq: username,
       },
     };
-    const userListGQL: any = API.graphql(
+    const userListGQL: any = await API.graphql(
       graphqlOperation(listUsers, { filter: filter })
     );
     const userList = userListGQL.data.listUsers.items;
@@ -32,6 +33,7 @@ const App: React.FC = () => {
       setCheckUser(true);
     } else {
       setCheckUser(false);
+      setUserId(userList[0].id);
     }
   };
 
@@ -44,12 +46,14 @@ const App: React.FC = () => {
 
   const registerUserName = (userName: any) => {
     window.setTimeout(() => {
-      dispatch(registerUser({ user: { userName: userName } }));
+      dispatch(registerUser({ user: { id: "", userName: userName } }));
       searchUser(user.username);
       if (checkUser) {
         API.graphql(
           graphqlOperation(createUser, { input: { golferName: user.username } })
         );
+      } else {
+        dispatch(registerUser({ user: { id: userId, userName: userName } }));
       }
     });
   };

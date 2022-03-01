@@ -77,7 +77,18 @@ export const onCreateScore = /* GraphQL */ `
       id
       userId
       score
-      courseId
+      course {
+        items {
+          id
+          userId
+          courseName
+          parNumber
+          createdAt
+          updatedAt
+          scoreCourseId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -89,7 +100,18 @@ export const onUpdateScore = /* GraphQL */ `
       id
       userId
       score
-      courseId
+      course {
+        items {
+          id
+          userId
+          courseName
+          parNumber
+          createdAt
+          updatedAt
+          scoreCourseId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -101,7 +123,18 @@ export const onDeleteScore = /* GraphQL */ `
       id
       userId
       score
-      courseId
+      course {
+        items {
+          id
+          userId
+          courseName
+          parNumber
+          createdAt
+          updatedAt
+          scoreCourseId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -116,6 +149,7 @@ export const onCreateCourse = /* GraphQL */ `
       parNumber
       createdAt
       updatedAt
+      scoreCourseId
     }
   }
 `;
@@ -128,6 +162,7 @@ export const onUpdateCourse = /* GraphQL */ `
       parNumber
       createdAt
       updatedAt
+      scoreCourseId
     }
   }
 `;
@@ -140,6 +175,7 @@ export const onDeleteCourse = /* GraphQL */ `
       parNumber
       createdAt
       updatedAt
+      scoreCourseId
     }
   }
 `;

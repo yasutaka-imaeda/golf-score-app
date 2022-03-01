@@ -128,7 +128,6 @@ export type CreateScoreInput = {
   id?: string | null,
   userId: string,
   score: string,
-  courseId: string,
   createdAt?: string | null,
   updatedAt?: string | null,
 };
@@ -136,7 +135,6 @@ export type CreateScoreInput = {
 export type ModelScoreConditionInput = {
   userId?: ModelIDInput | null,
   score?: ModelStringInput | null,
-  courseId?: ModelIDInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelScoreConditionInput | null > | null,
@@ -165,16 +163,32 @@ export type Score = {
   id: string,
   userId: string,
   score: string,
-  courseId: string,
+  course?: ModelCourseConnection | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+};
+
+export type ModelCourseConnection = {
+  __typename: "ModelCourseConnection",
+  items:  Array<Course | null >,
+  nextToken?: string | null,
+};
+
+export type Course = {
+  __typename: "Course",
+  id: string,
+  userId: string,
+  courseName: string,
+  parNumber: string,
+  createdAt: string,
+  updatedAt: string,
+  scoreCourseId?: string | null,
 };
 
 export type UpdateScoreInput = {
   id: string,
   userId?: string | null,
   score?: string | null,
-  courseId?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
 };
@@ -188,6 +202,7 @@ export type CreateCourseInput = {
   userId: string,
   courseName: string,
   parNumber: string,
+  scoreCourseId?: string | null,
 };
 
 export type ModelCourseConditionInput = {
@@ -197,16 +212,7 @@ export type ModelCourseConditionInput = {
   and?: Array< ModelCourseConditionInput | null > | null,
   or?: Array< ModelCourseConditionInput | null > | null,
   not?: ModelCourseConditionInput | null,
-};
-
-export type Course = {
-  __typename: "Course",
-  id: string,
-  userId: string,
-  courseName: string,
-  parNumber: string,
-  createdAt: string,
-  updatedAt: string,
+  scoreCourseId?: ModelIDInput | null,
 };
 
 export type UpdateCourseInput = {
@@ -214,6 +220,7 @@ export type UpdateCourseInput = {
   userId?: string | null,
   courseName?: string | null,
   parNumber?: string | null,
+  scoreCourseId?: string | null,
 };
 
 export type DeleteCourseInput = {
@@ -288,7 +295,6 @@ export type ModelScoreFilterInput = {
   id?: ModelIDInput | null,
   userId?: ModelIDInput | null,
   score?: ModelStringInput | null,
-  courseId?: ModelIDInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelScoreFilterInput | null > | null,
@@ -310,12 +316,7 @@ export type ModelCourseFilterInput = {
   and?: Array< ModelCourseFilterInput | null > | null,
   or?: Array< ModelCourseFilterInput | null > | null,
   not?: ModelCourseFilterInput | null,
-};
-
-export type ModelCourseConnection = {
-  __typename: "ModelCourseConnection",
-  items:  Array<Course | null >,
-  nextToken?: string | null,
+  scoreCourseId?: ModelIDInput | null,
 };
 
 export type ModelFollowFilterInput = {
@@ -459,7 +460,20 @@ export type CreateScoreMutation = {
     id: string,
     userId: string,
     score: string,
-    courseId: string,
+    course?:  {
+      __typename: "ModelCourseConnection",
+      items:  Array< {
+        __typename: "Course",
+        id: string,
+        userId: string,
+        courseName: string,
+        parNumber: string,
+        createdAt: string,
+        updatedAt: string,
+        scoreCourseId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
   } | null,
@@ -476,7 +490,20 @@ export type UpdateScoreMutation = {
     id: string,
     userId: string,
     score: string,
-    courseId: string,
+    course?:  {
+      __typename: "ModelCourseConnection",
+      items:  Array< {
+        __typename: "Course",
+        id: string,
+        userId: string,
+        courseName: string,
+        parNumber: string,
+        createdAt: string,
+        updatedAt: string,
+        scoreCourseId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
   } | null,
@@ -493,7 +520,20 @@ export type DeleteScoreMutation = {
     id: string,
     userId: string,
     score: string,
-    courseId: string,
+    course?:  {
+      __typename: "ModelCourseConnection",
+      items:  Array< {
+        __typename: "Course",
+        id: string,
+        userId: string,
+        courseName: string,
+        parNumber: string,
+        createdAt: string,
+        updatedAt: string,
+        scoreCourseId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
   } | null,
@@ -513,6 +553,7 @@ export type CreateCourseMutation = {
     parNumber: string,
     createdAt: string,
     updatedAt: string,
+    scoreCourseId?: string | null,
   } | null,
 };
 
@@ -530,6 +571,7 @@ export type UpdateCourseMutation = {
     parNumber: string,
     createdAt: string,
     updatedAt: string,
+    scoreCourseId?: string | null,
   } | null,
 };
 
@@ -547,6 +589,7 @@ export type DeleteCourseMutation = {
     parNumber: string,
     createdAt: string,
     updatedAt: string,
+    scoreCourseId?: string | null,
   } | null,
 };
 
@@ -682,7 +725,20 @@ export type GetScoreQuery = {
     id: string,
     userId: string,
     score: string,
-    courseId: string,
+    course?:  {
+      __typename: "ModelCourseConnection",
+      items:  Array< {
+        __typename: "Course",
+        id: string,
+        userId: string,
+        courseName: string,
+        parNumber: string,
+        createdAt: string,
+        updatedAt: string,
+        scoreCourseId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
   } | null,
@@ -702,7 +758,10 @@ export type ListScoresQuery = {
       id: string,
       userId: string,
       score: string,
-      courseId: string,
+      course?:  {
+        __typename: "ModelCourseConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
     } | null >,
@@ -723,6 +782,7 @@ export type GetCourseQuery = {
     parNumber: string,
     createdAt: string,
     updatedAt: string,
+    scoreCourseId?: string | null,
   } | null,
 };
 
@@ -743,6 +803,7 @@ export type ListCoursesQuery = {
       parNumber: string,
       createdAt: string,
       updatedAt: string,
+      scoreCourseId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -801,7 +862,10 @@ export type ScoreByUserQuery = {
       id: string,
       userId: string,
       score: string,
-      courseId: string,
+      course?:  {
+        __typename: "ModelCourseConnection",
+        nextToken?: string | null,
+      } | null,
       createdAt?: string | null,
       updatedAt?: string | null,
     } | null >,
@@ -828,6 +892,7 @@ export type CourseByUserQuery = {
       parNumber: string,
       createdAt: string,
       updatedAt: string,
+      scoreCourseId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -908,7 +973,20 @@ export type OnCreateScoreSubscription = {
     id: string,
     userId: string,
     score: string,
-    courseId: string,
+    course?:  {
+      __typename: "ModelCourseConnection",
+      items:  Array< {
+        __typename: "Course",
+        id: string,
+        userId: string,
+        courseName: string,
+        parNumber: string,
+        createdAt: string,
+        updatedAt: string,
+        scoreCourseId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
   } | null,
@@ -920,7 +998,20 @@ export type OnUpdateScoreSubscription = {
     id: string,
     userId: string,
     score: string,
-    courseId: string,
+    course?:  {
+      __typename: "ModelCourseConnection",
+      items:  Array< {
+        __typename: "Course",
+        id: string,
+        userId: string,
+        courseName: string,
+        parNumber: string,
+        createdAt: string,
+        updatedAt: string,
+        scoreCourseId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
   } | null,
@@ -932,7 +1023,20 @@ export type OnDeleteScoreSubscription = {
     id: string,
     userId: string,
     score: string,
-    courseId: string,
+    course?:  {
+      __typename: "ModelCourseConnection",
+      items:  Array< {
+        __typename: "Course",
+        id: string,
+        userId: string,
+        courseName: string,
+        parNumber: string,
+        createdAt: string,
+        updatedAt: string,
+        scoreCourseId?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt?: string | null,
     updatedAt?: string | null,
   } | null,
@@ -947,6 +1051,7 @@ export type OnCreateCourseSubscription = {
     parNumber: string,
     createdAt: string,
     updatedAt: string,
+    scoreCourseId?: string | null,
   } | null,
 };
 
@@ -959,6 +1064,7 @@ export type OnUpdateCourseSubscription = {
     parNumber: string,
     createdAt: string,
     updatedAt: string,
+    scoreCourseId?: string | null,
   } | null,
 };
 
@@ -971,6 +1077,7 @@ export type OnDeleteCourseSubscription = {
     parNumber: string,
     createdAt: string,
     updatedAt: string,
+    scoreCourseId?: string | null,
   } | null,
 };
 
