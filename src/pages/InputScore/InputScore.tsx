@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { API, graphqlOperation } from "aws-amplify";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Header from "../../component/Header/Header";
 import InputCourse from "../../component/InputCourse/InputCourse";
 import InScoreOfOneHole from "../../component/InScoreOfOneHole/InScoreOfOneHole";
+import InputButton from "../../component/InputButton/InputButton";
 import styles from "./InputScore.module.scss";
 import ReactPaginate from "react-paginate";
-import Button from "@mui/material/Button";
-import { registerParNumber, selectCourse } from "../../app/courseSlice";
-import { registerScore, selectScore } from "../../app/scoreSlice";
 
 const InputScore: React.FC = () => {
   const items: any = [1, 2];
-
-  const submitScore = () => {
-    console.log("submitScore");
-  };
 
   const inputScores = ({ currentItems }: any) => {
     return (
@@ -110,15 +102,7 @@ const InputScore: React.FC = () => {
           <PaginatedItems itemsPerPage={1} />
         </div>
         <div className={styles.btn}>
-          <Button
-            variant="contained"
-            disableElevation
-            color="success"
-            size="large"
-            onClick={submitScore}
-          >
-            登録
-          </Button>
+          <InputButton />
         </div>
       </div>
     </div>
