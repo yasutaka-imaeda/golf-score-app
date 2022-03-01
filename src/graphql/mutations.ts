@@ -98,20 +98,9 @@ export const createScore = /* GraphQL */ `
       id
       userId
       score
-      course {
-        items {
-          id
-          userId
-          courseName
-          parNumber
-          createdAt
-          updatedAt
-          scoreCourseId
-        }
-        nextToken
-      }
       createdAt
       updatedAt
+      courseScoreId
     }
   }
 `;
@@ -124,20 +113,9 @@ export const updateScore = /* GraphQL */ `
       id
       userId
       score
-      course {
-        items {
-          id
-          userId
-          courseName
-          parNumber
-          createdAt
-          updatedAt
-          scoreCourseId
-        }
-        nextToken
-      }
       createdAt
       updatedAt
+      courseScoreId
     }
   }
 `;
@@ -150,20 +128,9 @@ export const deleteScore = /* GraphQL */ `
       id
       userId
       score
-      course {
-        items {
-          id
-          userId
-          courseName
-          parNumber
-          createdAt
-          updatedAt
-          scoreCourseId
-        }
-        nextToken
-      }
       createdAt
       updatedAt
+      courseScoreId
     }
   }
 `;
@@ -177,9 +144,19 @@ export const createCourse = /* GraphQL */ `
       userId
       courseName
       parNumber
+      score {
+        items {
+          id
+          userId
+          score
+          createdAt
+          updatedAt
+          courseScoreId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
-      scoreCourseId
     }
   }
 `;
@@ -193,9 +170,19 @@ export const updateCourse = /* GraphQL */ `
       userId
       courseName
       parNumber
+      score {
+        items {
+          id
+          userId
+          score
+          createdAt
+          updatedAt
+          courseScoreId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
-      scoreCourseId
     }
   }
 `;
@@ -209,9 +196,19 @@ export const deleteCourse = /* GraphQL */ `
       userId
       courseName
       parNumber
+      score {
+        items {
+          id
+          userId
+          score
+          createdAt
+          updatedAt
+          courseScoreId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
-      scoreCourseId
     }
   }
 `;

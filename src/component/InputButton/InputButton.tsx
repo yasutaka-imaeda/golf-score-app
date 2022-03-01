@@ -6,7 +6,8 @@ import Button from "@mui/material/Button";
 import { registerParNumber, selectCourse } from "../../app/courseSlice";
 import { registerScore, selectScore } from "../../app/scoreSlice";
 import { selectUser } from "../../app/userSlice";
-import { createScore } from "../../graphql/mutations";
+import { createCourse, createScore } from "../../graphql/mutations";
+import { listCourses } from "../../graphql/queries";
 
 const InputButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,10 +17,42 @@ const InputButton: React.FC = () => {
 
   const submitScore = async () => {
     console.log("submitScore");
-    console.log(holeScore);
-    console.log(courseInfo);
-    console.log(userInfo);
-    // await API.graphql(graphqlOperation( createScore, {input: {}}}))
+    await API.graphql(
+      graphqlOperation(createCourse, {
+        input: {
+          userId: userInfo.user.id,
+          courseName: courseInfo.courseName,
+          parNumber: courseInfo.parNumber,
+        },
+      })
+    );
+    const filter = {
+      and: [
+        {
+          courseName: {
+            eq: courseInfo.courseName,
+          },
+        },
+        {
+          userId: {
+            eq: userInfo.user.id,
+          },
+        },
+      ],
+    };
+    const listCourse: any = await API.graphql(
+      graphqlOperation(listCourses, { filter: filter })
+    );
+    const courseId = listCourse.data.listCourses.items[0].id;
+    await API.graphql(
+      graphqlOperation(createScore, {
+        input: {
+          userId: userInfo.user.id,
+          score: JSON.stringify(holeScore),
+          courseScoreId: courseId,
+        },
+      })
+    );
   };
 
   return (

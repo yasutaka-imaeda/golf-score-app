@@ -68,20 +68,9 @@ export const getScore = /* GraphQL */ `
       id
       userId
       score
-      course {
-        items {
-          id
-          userId
-          courseName
-          parNumber
-          createdAt
-          updatedAt
-          scoreCourseId
-        }
-        nextToken
-      }
       createdAt
       updatedAt
+      courseScoreId
     }
   }
 `;
@@ -96,11 +85,9 @@ export const listScores = /* GraphQL */ `
         id
         userId
         score
-        course {
-          nextToken
-        }
         createdAt
         updatedAt
+        courseScoreId
       }
       nextToken
     }
@@ -113,9 +100,19 @@ export const getCourse = /* GraphQL */ `
       userId
       courseName
       parNumber
+      score {
+        items {
+          id
+          userId
+          score
+          createdAt
+          updatedAt
+          courseScoreId
+        }
+        nextToken
+      }
       createdAt
       updatedAt
-      scoreCourseId
     }
   }
 `;
@@ -131,9 +128,11 @@ export const listCourses = /* GraphQL */ `
         userId
         courseName
         parNumber
+        score {
+          nextToken
+        }
         createdAt
         updatedAt
-        scoreCourseId
       }
       nextToken
     }
@@ -189,11 +188,9 @@ export const scoreByUser = /* GraphQL */ `
         id
         userId
         score
-        course {
-          nextToken
-        }
         createdAt
         updatedAt
+        courseScoreId
       }
       nextToken
     }
@@ -219,9 +216,11 @@ export const courseByUser = /* GraphQL */ `
         userId
         courseName
         parNumber
+        score {
+          nextToken
+        }
         createdAt
         updatedAt
-        scoreCourseId
       }
       nextToken
     }

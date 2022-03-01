@@ -14,6 +14,8 @@ type User @model {
   golferName: String!
   Ave: Int
   Ave10Course: Int
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type Score @model {
@@ -24,21 +26,25 @@ type Score @model {
       sortKeyFields: ["createdAt"]
       queryField: "scoreByUser"
     )
-  score: AWSJSON!
-  course: [Course] @hasMany
-  createdAt: AWSDate
-  updatedAt: AWSDate
+  score: String!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type Course @model {
   id: ID!
   userId: ID! @index(name: "byuser", queryField: "courseByUser")
   courseName: String!
-  parNumber: AWSJSON!
+  parNumber: [Int]!
+  score: [Score] @hasMany
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type Follow @model {
   id: ID!
   followId: ID!
   followewId: ID!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
