@@ -17,15 +17,6 @@ const InputButton: React.FC = () => {
 
   const submitScore = async () => {
     console.log("submitScore");
-    await API.graphql(
-      graphqlOperation(createCourse, {
-        input: {
-          userId: userInfo.user.id,
-          courseName: courseInfo.courseName,
-          parNumber: courseInfo.parNumber,
-        },
-      })
-    );
     const filter = {
       and: [
         {
@@ -43,7 +34,21 @@ const InputButton: React.FC = () => {
     const listCourse: any = await API.graphql(
       graphqlOperation(listCourses, { filter: filter })
     );
-    const courseId = listCourse.data.listCourses.items[0].id;
+    let courseId;
+    console.log(listCourse);
+    if (listCourse.data.listCourses.items.length === 0) {
+      await API.graphql(
+        graphqlOperation(createCourse, {
+          input: {
+            userId: userInfo.user.id,
+            courseName: courseInfo.courseName,
+            parNumber: courseInfo.parNumber,
+          },
+        })
+      );
+    } else {
+      courseId = listCourse.data.listCourses.items[0].id;
+    }
     await API.graphql(
       graphqlOperation(createScore, {
         input: {
