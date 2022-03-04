@@ -8,8 +8,10 @@ import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
 import { useAppDispatch } from "./app/hooks";
 import { registerUser } from "./app/userSlice";
-import { listUsers } from "./graphql/queries";
+import { getCourse, listUsers, scoreByUser } from "./graphql/queries";
 import { createUser } from "./graphql/mutations";
+import { setRegisterScoreList } from "./app/scoreSlice";
+import { setCourseNameList } from "./app/courseSlice";
 
 Amplify.configure(awsconfig);
 
@@ -54,6 +56,25 @@ const App: React.FC = () => {
         );
       } else {
         dispatch(registerUser({ user: { id: userId, userName: userName } }));
+        const scoreList: any = API.graphql(
+          graphqlOperation(scoreByUser, {
+            userId: userId,
+            sortDirection: "DESC",
+          })
+        );
+        scoreList.then((res: any) => {
+          dispatch(setRegisterScoreList(res.data.scoreByUser.items));
+          res.data.scoreByUser.items.map((item: any) => {
+            const course: any = API.graphql(
+              graphqlOperation(getCourse, {
+                id: item.courseScoreId,
+              })
+            );
+            course.then((response: any) => {
+              dispatch(setCourseNameList(response.data.getCourse.courseName));
+            });
+          });
+        });
       }
     });
   };
