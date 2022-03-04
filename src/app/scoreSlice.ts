@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
 export interface ScoreState {
+  scorelist: [any];
   score: [
     {
       score: number;
@@ -80,6 +81,7 @@ export interface ScoreState {
 }
 
 const initialState: ScoreState = {
+  scorelist: [{}],
   score: [
     {
       score: 0,
@@ -182,6 +184,9 @@ export const scoreSlice = createSlice({
       const i = action.payload - 1;
       state.score[i].pat = state.score[i].pat - 1;
     },
+    setRegisterScoreList: (state, action) => {
+      state.scorelist = action.payload;
+    },
   },
 });
 
@@ -191,9 +196,12 @@ export const {
   rdOneScore,
   addOnePat,
   rdOnePat,
+  setRegisterScoreList,
 } = scoreSlice.actions;
 
 export const selectScore = (state: RootState): ScoreState["score"] =>
   state.score.score;
+export const selectScoreList = (state: RootState): ScoreState["scorelist"] =>
+  state.score.scorelist;
 
 export default scoreSlice.reducer;

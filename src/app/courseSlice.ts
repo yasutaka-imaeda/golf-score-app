@@ -7,6 +7,7 @@ export interface CourseState {
     courseName: string;
     parNumber: Array<Number>;
   };
+  settedCourseNamelist: Array<string>;
 }
 
 const initialState: CourseState = {
@@ -14,6 +15,7 @@ const initialState: CourseState = {
     courseName: "",
     parNumber: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
+  settedCourseNamelist: [],
 };
 
 export const courseSlice = createSlice({
@@ -31,12 +33,26 @@ export const courseSlice = createSlice({
       const i = action.payload.holeNumber - 1;
       state.course.parNumber[i] = action.payload.parNumber;
     },
+    setCourseNameList: (state, action) => {
+      state.settedCourseNamelist = [
+        ...state.settedCourseNamelist,
+        action.payload,
+      ];
+    },
   },
 });
 
-export const { registerCourse, registerCourseName, registerParNumber } = courseSlice.actions;
+export const {
+  registerCourse,
+  registerCourseName,
+  registerParNumber,
+  setCourseNameList,
+} = courseSlice.actions;
 
 export const selectCourse = (state: RootState): CourseState["course"] =>
   state.course.course;
+export const selectSettedCoursenamelist = (
+  state: RootState
+): CourseState["settedCourseNamelist"] => state.course.settedCourseNamelist;
 
 export default courseSlice.reducer;

@@ -46,6 +46,10 @@ const InputButton: React.FC = () => {
           },
         })
       );
+      const newCourse: any = await API.graphql(
+        graphqlOperation(listCourses, { filter: filter })
+      );
+      courseId = newCourse.data.listCourses.items[0].id;
     } else {
       courseId = listCourse.data.listCourses.items[0].id;
     }

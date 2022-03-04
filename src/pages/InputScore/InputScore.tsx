@@ -45,7 +45,7 @@ const InputScore: React.FC = () => {
     useEffect(() => {
       // Fetch items from another resources.
       const endOffset = itemOffset + itemsPerPage;
-      console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+      // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
       setCurrentItems(items.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(items.length / itemsPerPage));
     }, [itemOffset, itemsPerPage]);
@@ -57,9 +57,9 @@ const InputScore: React.FC = () => {
       // const inScoreValue10: any = document.getElementById(`inputScore10`) || {};
       // inScoreValue1.value = 0;
       // inScoreValue10.value = 0;
-      console.log(
-        `User requested page number ${event.selected}, which is offset ${newOffset}`
-      );
+      // console.log(
+      //   `User requested page number ${event.selected}, which is offset ${newOffset}`
+      // );
       if (isPage === 1) {
         setIsPage(2);
       } else {
