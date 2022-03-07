@@ -34,10 +34,7 @@ export const courseSlice = createSlice({
       state.course.parNumber[i] = action.payload.parNumber;
     },
     setCourseNameList: (state, action) => {
-      state.settedCourseNamelist = [
-        ...state.settedCourseNamelist,
-        action.payload,
-      ];
+      state.settedCourseNamelist = action.payload;
     },
   },
 });

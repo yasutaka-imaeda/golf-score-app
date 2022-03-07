@@ -8,7 +8,7 @@ const AllScore: React.FC = () => {
   const settedCourseNameList = useAppSelector(selectSettedCoursenamelist);
 
   const viwScorelist: any = settedCourseNameList.map((item: any) => {
-    return <div>{item}</div>;
+    return <div>{item.courseName}</div>;
   });
 
   return (

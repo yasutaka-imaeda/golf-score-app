@@ -8,7 +8,12 @@ import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
 import { useAppDispatch } from "./app/hooks";
 import { registerUser } from "./app/userSlice";
-import { getCourse, listUsers, scoreByUser } from "./graphql/queries";
+import {
+  getCourse,
+  listCourses,
+  listUsers,
+  scoreByUser,
+} from "./graphql/queries";
 import { createUser } from "./graphql/mutations";
 import { setRegisterScoreList } from "./app/scoreSlice";
 import { setCourseNameList } from "./app/courseSlice";
@@ -64,17 +69,33 @@ const App: React.FC = () => {
         );
         scoreList.then((res: any) => {
           dispatch(setRegisterScoreList(res.data.scoreByUser.items));
-          res.data.scoreByUser.items.map((item: any) => {
-            const course: any = API.graphql(
-              graphqlOperation(getCourse, {
-                id: item.courseScoreId,
-              })
-            );
-            course.then((response: any) => {
-              dispatch(setCourseNameList(response.data.getCourse.courseName));
-            });
-          });
         });
+        const filter = {
+          userId: {
+            eq: userId,
+          },
+        };
+        const course: any = API.graphql(
+          graphqlOperation(listCourses, { filter: filter })
+        );
+        console.log(course);
+        course.then((response: any) => {
+          console.log(response.data.listCourses);
+          dispatch(setCourseNameList(response.data.listCourses.items));
+        });
+        // scoreList.then((res: any) => {
+        // dispatch(setRegisterScoreList(res.data.scoreByUser.items));
+        //   res.data.scoreByUser.items.map((item: any) => {
+        //     const course: any = API.graphql(
+        //       graphqlOperation(getCourse, {
+        //         id: item.courseScoreId,
+        //       })
+        //     );
+        //     course.then((response: any) => {
+        //       dispatch(setCourseNameList(response.data.getCourse.courseName));
+        //     });
+        //   });
+        // });
       }
     });
   };
