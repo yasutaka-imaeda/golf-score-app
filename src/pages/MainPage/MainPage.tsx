@@ -17,12 +17,14 @@ const MainPage: React.FC = () => {
         <div className={styles.header}>
           <Header />
         </div>
-        <div>メインページ</div>
         {username !== "" ? (
           <div>ようこそ {username} さん!!</div>
         ) : (
           <div>ようこそ!!</div>
         )}
+        <div>
+          このアプリは簡単にゴルフのスコアの管理・分析ができるアプリです
+        </div>
       </div>
     </div>
   );
