@@ -14,6 +14,12 @@ const InputButton: React.FC = () => {
   const holeScore: any = useAppSelector(selectScore);
   const courseInfo: any = useAppSelector(selectCourse);
   const userInfo: any = useAppSelector(selectUser);
+  const sumScore = holeScore.reduce((sum: any, hole: any) => {
+    return sum + hole.score;
+  }, 0);
+  const sumPat = holeScore.reduce((sum: any, hole: any) => {
+    return sum + hole.pat;
+  }, 0);
 
   const submitScore = async () => {
     console.log("submitScore");
@@ -66,6 +72,8 @@ const InputButton: React.FC = () => {
 
   return (
     <div className={styles.root}>
+      <div className={styles.sum}>スコア: {sumScore}</div>
+      <div className={styles.sum}>パット合計: {sumPat}</div>
       <Button
         variant="contained"
         disableElevation

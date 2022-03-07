@@ -78,9 +78,7 @@ const App: React.FC = () => {
         const course: any = API.graphql(
           graphqlOperation(listCourses, { filter: filter })
         );
-        console.log(course);
         course.then((response: any) => {
-          console.log(response.data.listCourses);
           dispatch(setCourseNameList(response.data.listCourses.items));
         });
         // scoreList.then((res: any) => {

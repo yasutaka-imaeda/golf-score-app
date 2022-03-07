@@ -2,20 +2,19 @@ import React from "react";
 import styles from "./InputCourse.module.scss";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { useAppDispatch } from "../../app/hooks";
-import { registerCourseName } from "../../app/courseSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  registerCourseName,
+  selectSettedCoursenamelist,
+} from "../../app/courseSlice";
 
 const InputCourse: React.FC = () => {
   const dispatch = useAppDispatch();
-  const course: any = [
-    { label: "ゴルフ場A" },
-    { label: "ゴルフ場B" },
-    { label: "ゴルフ場C" },
-    { label: "ゴルフ場D" },
-    { label: "ゴルフ場E" },
-    { label: "ゴルフ場F" },
-    { label: "ゴルフ場G" },
-  ];
+  const settedCourseNameList = useAppSelector(selectSettedCoursenamelist);
+  const course = settedCourseNameList.map((item: any) => {
+    return { label: item.courseName };
+  });
+
   return (
     <div className={styles.root}>
       <div className={styles.title}>コースの入力</div>
