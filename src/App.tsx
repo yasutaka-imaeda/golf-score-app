@@ -81,19 +81,6 @@ const App: React.FC = () => {
         course.then((response: any) => {
           dispatch(setCourseNameList(response.data.listCourses.items));
         });
-        // scoreList.then((res: any) => {
-        // dispatch(setRegisterScoreList(res.data.scoreByUser.items));
-        //   res.data.scoreByUser.items.map((item: any) => {
-        //     const course: any = API.graphql(
-        //       graphqlOperation(getCourse, {
-        //         id: item.courseScoreId,
-        //       })
-        //     );
-        //     course.then((response: any) => {
-        //       dispatch(setCourseNameList(response.data.getCourse.courseName));
-        //     });
-        //   });
-        // });
       }
     });
   };
