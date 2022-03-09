@@ -15,7 +15,6 @@ const ListScore: React.FC = () => {
         <div className={styles.header}>
           <Header />
         </div>
-        <div>スコアリスト</div>
         <div className={styles.allScore}>
           <AllScore />
         </div>
