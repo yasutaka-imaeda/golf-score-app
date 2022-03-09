@@ -68,6 +68,10 @@ export const getScore = /* GraphQL */ `
       id
       userId
       score
+      sumScore
+      sumOut
+      sumIn
+      sumPat
       createdAt
       updatedAt
       courseScoreId
@@ -85,6 +89,10 @@ export const listScores = /* GraphQL */ `
         id
         userId
         score
+        sumScore
+        sumOut
+        sumIn
+        sumPat
         createdAt
         updatedAt
         courseScoreId
@@ -105,6 +113,10 @@ export const getCourse = /* GraphQL */ `
           id
           userId
           score
+          sumScore
+          sumOut
+          sumIn
+          sumPat
           createdAt
           updatedAt
           courseScoreId
@@ -188,6 +200,10 @@ export const scoreByUser = /* GraphQL */ `
         id
         userId
         score
+        sumScore
+        sumOut
+        sumIn
+        sumPat
         createdAt
         updatedAt
         courseScoreId

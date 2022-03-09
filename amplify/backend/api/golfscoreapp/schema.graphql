@@ -27,6 +27,10 @@ type Score @model {
       queryField: "scoreByUser"
     )
   score: String!
+  sumScore: Int!
+  sumOut: Int
+  sumIn: Int
+  sumPat: Int!
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }

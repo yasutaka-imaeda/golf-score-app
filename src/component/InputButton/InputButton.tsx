@@ -4,7 +4,12 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import styles from "./InputButton.module.scss";
 import Button from "@mui/material/Button";
 import { registerParNumber, selectCourse } from "../../app/courseSlice";
-import { registerScore, selectScore } from "../../app/scoreSlice";
+import {
+  registerScore,
+  selectScore,
+  selectScoreStatistics,
+  setSumData,
+} from "../../app/scoreSlice";
 import { selectUser } from "../../app/userSlice";
 import { createCourse, createScore } from "../../graphql/mutations";
 import { listCourses } from "../../graphql/queries";
@@ -14,12 +19,17 @@ const InputButton: React.FC = () => {
   const holeScore: any = useAppSelector(selectScore);
   const courseInfo: any = useAppSelector(selectCourse);
   const userInfo: any = useAppSelector(selectUser);
+  const sumData: any = useAppSelector(selectScoreStatistics);
   const sumScore = holeScore.reduce((sum: any, hole: any) => {
     return sum + hole.score;
   }, 0);
   const sumPat = holeScore.reduce((sum: any, hole: any) => {
     return sum + hole.pat;
   }, 0);
+
+  useEffect(() => {
+    dispatch(setSumData({ sumScore: sumScore, sumPat: sumPat }));
+  }, [dispatch, sumPat, sumScore]);
 
   const submitScore = async () => {
     console.log("submitScore");
@@ -65,6 +75,8 @@ const InputButton: React.FC = () => {
           userId: userInfo.user.id,
           score: JSON.stringify(holeScore),
           courseScoreId: courseId,
+          sumScore: sumData.sumScore,
+          sumPat: sumData.sumPat,
         },
       })
     );

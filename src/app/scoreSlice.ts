@@ -78,6 +78,7 @@ export interface ScoreState {
       pat: number;
     }
   ];
+  scoreStatistics: { sumScore: number; sumPat: number };
 }
 
 const initialState: ScoreState = {
@@ -156,6 +157,7 @@ const initialState: ScoreState = {
       pat: 0,
     },
   ],
+  scoreStatistics: { sumScore: 0, sumPat: 0 },
 };
 
 export const scoreSlice = createSlice({
@@ -187,6 +189,9 @@ export const scoreSlice = createSlice({
     setRegisterScoreList: (state, action) => {
       state.scorelist = action.payload;
     },
+    setSumData: (state, action) => {
+      state.scoreStatistics = action.payload;
+    },
   },
 });
 
@@ -197,11 +202,15 @@ export const {
   addOnePat,
   rdOnePat,
   setRegisterScoreList,
+  setSumData,
 } = scoreSlice.actions;
 
 export const selectScore = (state: RootState): ScoreState["score"] =>
   state.score.score;
 export const selectScoreList = (state: RootState): ScoreState["scorelist"] =>
   state.score.scorelist;
+export const selectScoreStatistics = (
+  state: RootState
+): ScoreState["scoreStatistics"] => state.score.scoreStatistics;
 
 export default scoreSlice.reducer;

@@ -77,6 +77,10 @@ export const onCreateScore = /* GraphQL */ `
       id
       userId
       score
+      sumScore
+      sumOut
+      sumIn
+      sumPat
       createdAt
       updatedAt
       courseScoreId
@@ -89,6 +93,10 @@ export const onUpdateScore = /* GraphQL */ `
       id
       userId
       score
+      sumScore
+      sumOut
+      sumIn
+      sumPat
       createdAt
       updatedAt
       courseScoreId
@@ -101,6 +109,10 @@ export const onDeleteScore = /* GraphQL */ `
       id
       userId
       score
+      sumScore
+      sumOut
+      sumIn
+      sumPat
       createdAt
       updatedAt
       courseScoreId
@@ -119,6 +131,10 @@ export const onCreateCourse = /* GraphQL */ `
           id
           userId
           score
+          sumScore
+          sumOut
+          sumIn
+          sumPat
           createdAt
           updatedAt
           courseScoreId
@@ -142,6 +158,10 @@ export const onUpdateCourse = /* GraphQL */ `
           id
           userId
           score
+          sumScore
+          sumOut
+          sumIn
+          sumPat
           createdAt
           updatedAt
           courseScoreId
@@ -165,6 +185,10 @@ export const onDeleteCourse = /* GraphQL */ `
           id
           userId
           score
+          sumScore
+          sumOut
+          sumIn
+          sumPat
           createdAt
           updatedAt
           courseScoreId
