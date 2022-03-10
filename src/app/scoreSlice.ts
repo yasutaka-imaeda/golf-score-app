@@ -170,6 +170,9 @@ export const scoreSlice = createSlice({
       state.score[i].score = action.payload.score;
       state.score[i].pat = action.payload.pat;
     },
+    setRegisterScore: (state, action) => {
+      state.score = action.payload;
+    },
     addOneScore: (state, action) => {
       const i = action.payload - 1;
       state.score[i].score = state.score[i].score + 1;
@@ -197,6 +200,7 @@ export const scoreSlice = createSlice({
 
 export const {
   registerScore,
+  setRegisterScore,
   addOneScore,
   rdOneScore,
   addOnePat,

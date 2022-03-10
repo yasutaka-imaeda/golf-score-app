@@ -1,0 +1,23 @@
+.root {
+  .sum {
+    margin-bottom: 4px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #00992e;
+  }
+  .button {
+    display: flex;
+    margin-left: -400px;
+    .edit {
+      margin-right: 200px;
+    }
+    button {
+      margin-top: 30px;
+    }
+    .delete {
+    }
+    button {
+      margin-top: 30px;
+    }
+  }
+}
