@@ -111,6 +111,12 @@ const Header: React.FC = () => {
   };
   return (
     <div className={styles.root} onClick={reset}>
+      <div>
+        <Link to={Path.home} className={styles.appHead}>
+          <div className={styles.appLogo}></div>
+          <div className={styles.appTitle}>みんなのG SCORE</div>
+        </Link>
+      </div>
       <Button component={Link} to={Path.home}>
         ホームへページ遷移
       </Button>
