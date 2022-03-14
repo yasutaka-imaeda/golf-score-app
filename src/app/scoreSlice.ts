@@ -79,6 +79,7 @@ export interface ScoreState {
     }
   ];
   scoreStatistics: { sumScore: number; sumPat: number };
+  selectScoreId: string;
 }
 
 const initialState: ScoreState = {
@@ -158,6 +159,7 @@ const initialState: ScoreState = {
     },
   ],
   scoreStatistics: { sumScore: 0, sumPat: 0 },
+  selectScoreId: "",
 };
 
 export const scoreSlice = createSlice({
@@ -195,6 +197,9 @@ export const scoreSlice = createSlice({
     setSumData: (state, action) => {
       state.scoreStatistics = action.payload;
     },
+    setSelectScoreId: (state, action) => {
+      state.selectScoreId = action.payload;
+    },
   },
 });
 
@@ -207,14 +212,17 @@ export const {
   rdOnePat,
   setRegisterScoreList,
   setSumData,
+  setSelectScoreId,
 } = scoreSlice.actions;
 
 export const selectScore = (state: RootState): ScoreState["score"] =>
   state.score.score;
 export const selectScoreList = (state: RootState): ScoreState["scorelist"] =>
   state.score.scorelist;
-export const selectScoreStatistics = (
-  state: RootState
-): ScoreState["scoreStatistics"] => state.score.scoreStatistics;
+  export const selectScoreStatistics = (
+    state: RootState
+    ): ScoreState["scoreStatistics"] => state.score.scoreStatistics;
+    export const selectSelectScoreId = (state: RootState): ScoreState["selectScoreId"] =>
+      state.score.selectScoreId;
 
 export default scoreSlice.reducer;

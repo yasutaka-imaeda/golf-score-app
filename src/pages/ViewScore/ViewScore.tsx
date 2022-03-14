@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../component/Header/Header";
 import InScoreOfOneHole from "../../component/InScoreOfOneHole/InScoreOfOneHole";
-import InputButton from "../../component/InputButton/InputButton";
 import styles from "./ViewScore.module.scss";
 import ReactPaginate from "react-paginate";
 import { useAppSelector } from "../../app/hooks";

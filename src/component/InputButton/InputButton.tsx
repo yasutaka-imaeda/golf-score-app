@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import styles from "./InputButton.module.scss";
 import Button from "@mui/material/Button";
-import { registerParNumber, selectCourse } from "../../app/courseSlice";
+import { selectCourse, setParNumber } from "../../app/courseSlice";
 import {
-  registerScore,
   selectScore,
   selectScoreStatistics,
+  setRegisterScore,
   setSumData,
 } from "../../app/scoreSlice";
 import { selectUser } from "../../app/userSlice";
@@ -26,13 +26,106 @@ const InputButton: React.FC = () => {
   const sumPat = holeScore.reduce((sum: any, hole: any) => {
     return sum + hole.pat;
   }, 0);
+  const resetData = [
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+    {
+      score: 0,
+      pat: 0,
+    },
+  ];
+  const resetParNumberData = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+  ];
 
   useEffect(() => {
     dispatch(setSumData({ sumScore: sumScore, sumPat: sumPat }));
   }, [dispatch, sumPat, sumScore]);
 
   const submitScore = async () => {
-    console.log("submitScore");
     const filter = {
       and: [
         {
@@ -51,7 +144,6 @@ const InputButton: React.FC = () => {
       graphqlOperation(listCourses, { filter: filter })
     );
     let courseId;
-    console.log(listCourse);
     if (listCourse.data.listCourses.items.length === 0) {
       await API.graphql(
         graphqlOperation(createCourse, {
@@ -80,6 +172,8 @@ const InputButton: React.FC = () => {
         },
       })
     );
+    dispatch(setRegisterScore(resetData));
+    dispatch(setParNumber(resetParNumberData));
   };
 
   return (

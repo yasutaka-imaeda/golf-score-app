@@ -29,6 +29,9 @@ export const courseSlice = createSlice({
     registerCourseName: (state, action) => {
       state.course.courseName = action.payload;
     },
+    setParNumber: (state, action) => {
+      state.course.parNumber = action.payload;
+    },
     registerParNumber: (state, action) => {
       const i = action.payload.holeNumber - 1;
       state.course.parNumber[i] = action.payload.parNumber;
@@ -44,6 +47,7 @@ export const {
   registerCourseName,
   registerParNumber,
   setCourseNameList,
+  setParNumber,
 } = courseSlice.actions;
 
 export const selectCourse = (state: RootState): CourseState["course"] =>

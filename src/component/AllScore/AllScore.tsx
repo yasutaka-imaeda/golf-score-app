@@ -7,7 +7,11 @@ import {
   registerCourse,
   selectSettedCoursenamelist,
 } from "../../app/courseSlice";
-import { selectScoreList, setRegisterScore } from "../../app/scoreSlice";
+import {
+  selectScoreList,
+  setRegisterScore,
+  setSelectScoreId,
+} from "../../app/scoreSlice";
 
 const AllScore: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,8 +19,6 @@ const AllScore: React.FC = () => {
   const settedScoreList = useAppSelector(selectScoreList);
 
   const setScore = (data: any) => {
-    console.log(data);
-    console.log(data[1]);
     const scoreData = JSON.parse(data[0].score);
     dispatch(setRegisterScore(scoreData));
     dispatch(
@@ -25,6 +27,7 @@ const AllScore: React.FC = () => {
         parNumber: data[1].parNumber,
       })
     );
+    dispatch(setSelectScoreId(data[0].id));
   };
 
   const viewScorelist: any = settedScoreList.map((item: any) => {
