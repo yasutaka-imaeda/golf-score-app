@@ -1,0 +1,27 @@
+.root {
+  .container {
+    .intro {
+      text-align: center;
+      font-weight: bold;
+      font-size: 36px;
+      color: #43ac12;
+      margin-bottom: 10px;
+    }
+    .info {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .functionWrapper {
+      .functionTitle {
+        text-align: center;
+        font-size: 20px;
+      }
+      .function {
+        display: flex;
+        .functionItem {
+        }
+      }
+    }
+  }
+}

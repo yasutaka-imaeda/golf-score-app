@@ -8,12 +8,7 @@ import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
 import { useAppDispatch } from "./app/hooks";
 import { registerUser } from "./app/userSlice";
-import {
-  getCourse,
-  listCourses,
-  listUsers,
-  scoreByUser,
-} from "./graphql/queries";
+import { listCourses, listUsers, scoreByUser } from "./graphql/queries";
 import { createUser } from "./graphql/mutations";
 import { setRegisterScoreList } from "./app/scoreSlice";
 import { setCourseNameList } from "./app/courseSlice";

@@ -18,12 +18,25 @@ const MainPage: React.FC = () => {
           <Header />
         </div>
         {username !== "" ? (
-          <div>ようこそ {username} さん!!</div>
+          <div className={styles.intro}>ようこそ {username} さん!!</div>
         ) : (
-          <div>ようこそ!!</div>
+          <div className={styles.intro}>ようこそ!!</div>
         )}
-        <div>
+        <div className={styles.info}>
           このアプリは簡単にゴルフのスコアの管理・分析ができるアプリです
+        </div>
+        <div className={styles.functionWrapper}>
+          <div className={styles.functionTitle}>このアプリでできること</div>
+          <div className={styles.function}>
+            <div className={styles.functionItem}>
+              <div className={styles.functionImg}></div>
+              <div className={styles.functionName}>スコア入力</div>
+            </div>
+            <div className={styles.functionItem}>
+              <div className={styles.functionImg}></div>
+              <div className={styles.functionName}>スコア確認</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
