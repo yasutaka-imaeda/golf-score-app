@@ -31,28 +31,32 @@ const AllScore: React.FC = () => {
   };
 
   const viewScorelist: any = settedScoreList.map((item: any) => {
-    const createDate: any = item.createdAt.substring(0, 10);
-    const sumScore: any = item.sumScore;
-    const courseId: any = item.courseScoreId;
-    const courseName: any = settedCourseNameList.filter(
-      (courseItem: any) => courseItem.id === courseId
-    );
-    return (
-      <tr>
-        <td>{createDate}</td>
-        <td>{courseName[0].courseName}</td>
-        <td>{sumScore}</td>
-        <td
-          onClick={() => {
-            const data = item;
-            const courseinfo = courseName[0];
-            setScore([data, courseinfo]);
-          }}
-        >
-          <Link to={Path.viewScore}>リンク</Link>
-        </td>
-      </tr>
-    );
+    if (item.id !== undefined) {
+      const createDate: any = item.createdAt.substring(0, 10);
+      const sumScore: any = item.sumScore;
+      const courseId: any = item.courseScoreId;
+      const courseName: any = settedCourseNameList.filter(
+        (courseItem: any) => courseItem.id === courseId
+      );
+      return (
+        <tr>
+          <td>{createDate}</td>
+          <td>{courseName[0].courseName}</td>
+          <td>{sumScore}</td>
+          <td
+            onClick={() => {
+              const data = item;
+              const courseinfo = courseName[0];
+              setScore([data, courseinfo]);
+            }}
+          >
+            <Link to={Path.viewScore}>リンク</Link>
+          </td>
+        </tr>
+      );
+    } else {
+      return <div></div>;
+    }
   });
 
   return (
