@@ -4,12 +4,14 @@ import MainPage from "./pages/MainPage/MainPage";
 import InputScore from "./pages/InputScore/InputScore";
 import ListScore from "./pages/ListScore/ListScore";
 import ViewScore from "./pages/ViewScore/ViewScore";
+import Analysis from "./pages/Analysis/Analysis";
 
 export const Path = {
   home: "/",
   inputScore: "/inputScore",
   listScore: "/listScore",
   viewScore: "/viewScore",
+  analysis: "/analysis",
 };
 
 const Routess: React.FC = () => {
@@ -20,6 +22,7 @@ const Routess: React.FC = () => {
         <Route path={Path.inputScore} element={<InputScore />} />
         <Route path={Path.listScore} element={<ListScore />} />
         <Route path={Path.viewScore} element={<ViewScore />} />
+        <Route path={Path.analysis} element={<Analysis />} />
       </Routes>
     </div>
   );

@@ -78,7 +78,7 @@ export interface ScoreState {
       pat: number;
     }
   ];
-  scoreStatistics: { sumScore: number; sumPat: number };
+  scoreStatistics: { sumScore: number; sumPat: number; avePat: number };
   selectScoreId: string;
 }
 
@@ -158,7 +158,7 @@ const initialState: ScoreState = {
       pat: 0,
     },
   ],
-  scoreStatistics: { sumScore: 0, sumPat: 0 },
+  scoreStatistics: { sumScore: 0, sumPat: 0, avePat: 0 },
   selectScoreId: "",
 };
 

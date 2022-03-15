@@ -126,6 +126,9 @@ const Header: React.FC = () => {
       <Button component={Link} to={Path.listScore}>
         スコア一覧ページ遷移
       </Button>
+      <Button component={Link} to={Path.analysis}>
+        スコア分析ページ遷移
+      </Button>
       <div className={styles.signOut}>
         <AmplifySignOut
           buttonText="ログアウト"

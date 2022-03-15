@@ -26,6 +26,8 @@ const InputButton: React.FC = () => {
   const sumPat = holeScore.reduce((sum: any, hole: any) => {
     return sum + hole.pat;
   }, 0);
+  const avePat = Math.round((sumPat / 18) * Math.pow(10, 2)) / Math.pow(10, 2);
+
   const resetData = [
     {
       score: 0,
@@ -122,8 +124,10 @@ const InputButton: React.FC = () => {
   ];
 
   useEffect(() => {
-    dispatch(setSumData({ sumScore: sumScore, sumPat: sumPat }));
-  }, [dispatch, sumPat, sumScore]);
+    dispatch(
+      setSumData({ sumScore: sumScore, sumPat: sumPat, avePat: avePat })
+    );
+  }, [dispatch, sumPat, sumScore, avePat]);
 
   const submitScore = async () => {
     const filter = {
@@ -179,7 +183,7 @@ const InputButton: React.FC = () => {
   return (
     <div className={styles.root}>
       <div className={styles.sum}>スコア: {sumScore}</div>
-      <div className={styles.sum}>パット合計: {sumPat}</div>
+      <div className={styles.sum}>パット平均: {avePat}</div>
       <Button
         variant="contained"
         disableElevation
