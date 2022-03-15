@@ -14,10 +14,8 @@ import {
 
 const Graph: React.FC = () => {
   const setScoreList = useAppSelector(selectScoreList);
-  console.log(setScoreList);
   let data: any;
   const scoreList = setScoreList.map((item: any) => {
-    console.log(item);
     if (item.id !== undefined) {
       return {
         scoreData: JSON.parse(item.score),
@@ -29,11 +27,9 @@ const Graph: React.FC = () => {
       return {};
     }
   });
-  console.log(scoreList);
   data = scoreList.map((item: any) => {
     return { create: item.scoreCreatedAt, score: item.sumScore };
   });
-  console.log(data);
 
   return (
     <div className={styles.root}>
