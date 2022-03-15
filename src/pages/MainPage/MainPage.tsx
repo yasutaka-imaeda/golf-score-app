@@ -34,7 +34,11 @@ const MainPage: React.FC = () => {
             </div>
             <div className={styles.functionItem}>
               <div className={styles.functionImg}></div>
-              <div className={styles.functionName}>スコア確認</div>
+              <div className={styles.functionName}>スコア確認・編集</div>
+            </div>
+            <div className={styles.functionItem}>
+              <div className={styles.functionImg}></div>
+              <div className={styles.functionName}>スコア分析</div>
             </div>
           </div>
         </div>
