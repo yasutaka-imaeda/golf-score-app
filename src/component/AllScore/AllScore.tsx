@@ -30,9 +30,23 @@ const AllScore: React.FC = () => {
     dispatch(setSelectScoreId(data[0].id));
   };
 
+  const checkForOneLetter = (data: string) => {
+    if (data.length === 1) {
+      return `0${data}`;
+    } else {
+      return data;
+    }
+  };
+
   const viewScorelist: any = settedScoreList.map((item: any) => {
     if (item.id !== undefined) {
-      const createDate: any = item.createdAt.substring(0, 10);
+      const japanTime = new Date(item.createdAt);
+      const getFullYear = String(japanTime.getFullYear());
+      const getMonth = checkForOneLetter(String(japanTime.getMonth() + 1));
+      const getDate = checkForOneLetter(String(japanTime.getDate()));
+      const createJapanTime = `${getFullYear}/${getMonth}/${getDate}`;
+
+      const createDate: any = createJapanTime;
       const sumScore: any = item.sumScore;
       const courseId: any = item.courseScoreId;
       const courseName: any = settedCourseNameList.filter(

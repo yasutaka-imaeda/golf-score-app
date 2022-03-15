@@ -27,6 +27,7 @@ const InputCourse: React.FC = () => {
       graphqlOperation(listCourses, { filter: filter })
     );
     dispatch(setParNumber(listCourse.data.listCourses.items[0].parNumber));
+    dispatch(registerCourseName(Inputcourse.label));
   };
 
   return (

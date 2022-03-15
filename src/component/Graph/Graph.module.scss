@@ -1,7 +1,11 @@
 .root {
-  margin-top: 50px;
-  width: 100vw;
-  text-align: center;
-  display: flex;
-  justify-content: center;
+  .graphWrapper {
+    margin-top: 50px;
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  .editWrapper {
+  }
 }
