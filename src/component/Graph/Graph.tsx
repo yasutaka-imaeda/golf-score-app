@@ -42,7 +42,8 @@ const Graph: React.FC = () => {
       return {};
     }
   });
-  setFirstData = scoreList.map((item: any) => {
+  const reverseScoreList = scoreList.reverse();
+  setFirstData = reverseScoreList.map((item: any) => {
     return { create: item.scoreCreatedAt, score: item.sumScore };
   });
 
@@ -51,7 +52,7 @@ const Graph: React.FC = () => {
   }, []);
 
   const setGraphParAve = () => {
-    const setEditData: any = scoreList.map((item: any) => {
+    const setEditData: any = reverseScoreList.map((item: any) => {
       const avePat =
         Math.round((item.sumPat / 18) * Math.pow(10, 2)) / Math.pow(10, 2);
       return { create: item.scoreCreatedAt, score: avePat };
@@ -60,7 +61,7 @@ const Graph: React.FC = () => {
     setLabel("パット平均");
   };
   const setGraphSumScore = () => {
-    const setEditData: any = scoreList.map((item: any) => {
+    const setEditData: any = reverseScoreList.map((item: any) => {
       return { create: item.scoreCreatedAt, score: item.sumScore };
     });
     setData(setEditData);

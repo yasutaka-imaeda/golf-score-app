@@ -72,7 +72,6 @@ const AllScore: React.FC = () => {
       return <div></div>;
     }
   });
-  const viewScorelistReverse = viewScorelist.reverse();
 
   return (
     <div className={styles.root}>
@@ -84,7 +83,7 @@ const AllScore: React.FC = () => {
           <th>スコア</th>
           <th>リンク</th>
         </tr>
-        {viewScorelistReverse}
+        {viewScorelist}
       </table>
     </div>
   );

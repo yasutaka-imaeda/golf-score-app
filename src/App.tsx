@@ -59,7 +59,7 @@ const App: React.FC = () => {
         const scoreList: any = API.graphql(
           graphqlOperation(scoreByUser, {
             userId: userId,
-            sortDirection: "ASC",
+            sortDirection: "DESC",
           })
         );
         scoreList.then((res: any) => {
