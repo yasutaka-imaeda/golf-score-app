@@ -4,12 +4,16 @@ import { Path } from "../../Routes";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { AmplifySignOut } from "@aws-amplify/ui-react";
-import { setRegisterScore } from "../../app/scoreSlice";
-import { setParNumber } from "../../app/courseSlice";
-import { useAppDispatch } from "../../app/hooks";
+import { setRegisterScore, setRegisterScoreList } from "../../app/scoreSlice";
+import { setCourseNameList, setParNumber } from "../../app/courseSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectUser } from "../../app/userSlice";
+import { API, graphqlOperation } from "aws-amplify";
+import { listCourses, scoreByUser } from "../../graphql/queries";
 
 const Header: React.FC = () => {
   const dispatch = useAppDispatch();
+  const userInfo: any = useAppSelector(selectUser);
   const resetData = [
     {
       score: 0,
@@ -108,6 +112,22 @@ const Header: React.FC = () => {
   const reset = async () => {
     dispatch(setRegisterScore(resetData));
     dispatch(setParNumber(resetParNumberData));
+    const scoreList: any = await API.graphql(
+      graphqlOperation(scoreByUser, {
+        userId: userInfo.user.id,
+        sortDirection: "DESC",
+      })
+    );
+    dispatch(setRegisterScoreList(scoreList.data.scoreByUser.items));
+    const filter = {
+      userId: {
+        eq: userInfo.user.id,
+      },
+    };
+    const course: any = await API.graphql(
+      graphqlOperation(listCourses, { filter: filter })
+    );
+    dispatch(setCourseNameList(course.data.listCourses.items));
   };
   return (
     <div className={styles.root} onClick={reset}>
