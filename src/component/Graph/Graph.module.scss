@@ -7,5 +7,15 @@
     justify-content: center;
   }
   .editWrapper {
+    .button {
+      display: flex;
+      justify-content: space-around;
+      button {
+        margin-top: 60px;
+      }
+      button {
+        margin-top: 60px;
+      }
+    }
   }
 }

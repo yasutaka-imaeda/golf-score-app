@@ -118,16 +118,16 @@ const Header: React.FC = () => {
         </Link>
       </div>
       <Button component={Link} to={Path.home}>
-        ホームへページ遷移
+        ホーム
       </Button>
       <Button component={Link} to={Path.inputScore}>
-        スコア入力ページ遷移
+        スコア入力
       </Button>
       <Button component={Link} to={Path.listScore}>
-        スコア一覧ページ遷移
+        スコア一覧
       </Button>
       <Button component={Link} to={Path.analysis}>
-        スコア分析ページ遷移
+        スコア分析
       </Button>
       <div className={styles.signOut}>
         <AmplifySignOut

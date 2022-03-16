@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../app/hooks";
 import { selectScoreList } from "../../app/scoreSlice";
 import styles from "./Graph.module.scss";
@@ -11,10 +11,13 @@ import {
   Tooltip,
   Label,
 } from "recharts";
+import { Button } from "@mui/material";
 
 const Graph: React.FC = () => {
   const setScoreList = useAppSelector(selectScoreList);
-  let data: any;
+  const [data, setData] = useState([]);
+  const [label, setLabel] = useState("スコア");
+  let setFirstData: any;
   const checkForOneLetter = (data: string) => {
     if (data.length === 1) {
       return `0${data}`;
@@ -39,9 +42,30 @@ const Graph: React.FC = () => {
       return {};
     }
   });
-  data = scoreList.map((item: any) => {
+  setFirstData = scoreList.map((item: any) => {
     return { create: item.scoreCreatedAt, score: item.sumScore };
   });
+
+  useEffect(() => {
+    setData(setFirstData);
+  }, []);
+
+  const setGraphParAve = () => {
+    const setEditData: any = scoreList.map((item: any) => {
+      const avePat =
+        Math.round((item.sumPat / 18) * Math.pow(10, 2)) / Math.pow(10, 2);
+      return { create: item.scoreCreatedAt, score: avePat };
+    });
+    setData(setEditData);
+    setLabel("パット平均");
+  };
+  const setGraphSumScore = () => {
+    const setEditData: any = scoreList.map((item: any) => {
+      return { create: item.scoreCreatedAt, score: item.sumScore };
+    });
+    setData(setEditData);
+    setLabel("スコア");
+  };
 
   return (
     <div className={styles.root}>
@@ -59,7 +83,7 @@ const Graph: React.FC = () => {
               <Label value="日付" offset={0} position="bottom" />
             </XAxis>
             <YAxis
-              label={{ value: "スコア", angle: -90, position: "insideLeft" }}
+              label={{ value: label, angle: -90, position: "insideLeft" }}
             />
             <Tooltip />
           </LineChart>
@@ -67,7 +91,32 @@ const Graph: React.FC = () => {
           <div>データがありません</div>
         )}
       </div>
-      <div className={styles.editWrapper}>編集ボタン</div>
+      <div className={styles.editWrapper}>
+        <div className={styles.button}>
+          <div className={styles.edit}>
+            <Button
+              variant="contained"
+              disableElevation
+              color="success"
+              size="large"
+              onClick={setGraphSumScore}
+            >
+              スコア
+            </Button>
+          </div>
+          <div className={styles.delete}>
+            <Button
+              variant="contained"
+              disableElevation
+              color="success"
+              size="large"
+              onClick={setGraphParAve}
+            >
+              パット平均
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
