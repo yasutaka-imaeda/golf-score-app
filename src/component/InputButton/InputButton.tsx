@@ -3,16 +3,17 @@ import { API, graphqlOperation } from "aws-amplify";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import styles from "./InputButton.module.scss";
 import Button from "@mui/material/Button";
-import { selectCourse, setParNumber } from "../../app/courseSlice";
+import { selectCourse, setCourseNameList, setParNumber } from "../../app/courseSlice";
 import {
   selectScore,
   selectScoreStatistics,
   setRegisterScore,
+  setRegisterScoreList,
   setSumData,
 } from "../../app/scoreSlice";
 import { selectUser } from "../../app/userSlice";
 import { createCourse, createScore } from "../../graphql/mutations";
-import { listCourses } from "../../graphql/queries";
+import { listCourses, scoreByUser } from "../../graphql/queries";
 
 const InputButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -178,6 +179,22 @@ const InputButton: React.FC = () => {
     );
     dispatch(setRegisterScore(resetData));
     dispatch(setParNumber(resetParNumberData));
+    const scoreList: any = await API.graphql(
+      graphqlOperation(scoreByUser, {
+        userId: userInfo.user.id,
+        sortDirection: "DESC",
+      })
+    );
+    dispatch(setRegisterScoreList(scoreList.data.scoreByUser.items));
+    const filterdata = {
+      userId: {
+        eq: userInfo.user.id,
+      },
+    };
+    const course: any = await API.graphql(
+      graphqlOperation(listCourses, { filter: filterdata })
+    );
+    dispatch(setCourseNameList(course.data.listCourses.items));
   };
 
   return (

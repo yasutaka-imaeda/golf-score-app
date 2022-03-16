@@ -52,6 +52,8 @@ const AllScore: React.FC = () => {
       const courseName: any = settedCourseNameList.filter(
         (courseItem: any) => courseItem.id === courseId
       );
+      console.log(item);
+      console.log(courseName);
       return (
         <tr>
           <td>{createDate}</td>
