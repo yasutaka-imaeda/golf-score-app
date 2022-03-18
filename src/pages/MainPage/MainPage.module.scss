@@ -1,5 +1,14 @@
 .root {
+  .img {
+    position: absolute;
+    background-image: url("../../img/backGroundImg.jpg");
+    height: 100vh;
+    width: 100vw;
+    z-index: -10;
+    opacity: 0.5;
+  }
   .container {
+    opacity: 1;
     .intro {
       text-align: center;
       font-weight: bold;
@@ -18,9 +27,54 @@
         font-size: 20px;
       }
       .function {
+        margin-top: 20px;
         display: flex;
         justify-content: space-around;
         .functionItem {
+          .functionImginput {
+            background-image: url("../../img/inputScoreImg.png");
+            height: 350px;
+            width: 450px;
+            border-radius: 20px;
+          }
+          .functionName {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 28px;
+            color: black;
+          }
+        }
+        .functionItem {
+          .functionImgeScoreList {
+            background-image: url("../../img/scorelistImg.png");
+            height: 350px;
+            width: 450px;
+            border-radius: 20px;
+          }
+          .functionName {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 28px;
+            color: black;
+          }
+        }
+        .functionItem {
+          .functionImgGraph {
+            background-image: url("../../img/scoreGraphImg.png");
+            background-position: center;
+            height: 350px;
+            width: 450px;
+            border-radius: 20px;
+          }
+          .functionName {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 28px;
+            color: black;
+          }
         }
       }
     }

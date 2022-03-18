@@ -13,6 +13,7 @@ const MainPage: React.FC = () => {
   // const userName = userInfo.user.userName;
   return (
     <div className={styles.root}>
+      <div className={styles.img}></div>
       <div className={styles.container}>
         <div className={styles.header}>
           <Header />
@@ -29,15 +30,15 @@ const MainPage: React.FC = () => {
           <div className={styles.functionTitle}>このアプリでできること</div>
           <div className={styles.function}>
             <div className={styles.functionItem}>
-              <div className={styles.functionImg}></div>
+              <div className={styles.functionImginput}></div>
               <div className={styles.functionName}>スコア入力</div>
             </div>
             <div className={styles.functionItem}>
-              <div className={styles.functionImg}></div>
+              <div className={styles.functionImgeScoreList}></div>
               <div className={styles.functionName}>スコア確認・編集</div>
             </div>
             <div className={styles.functionItem}>
-              <div className={styles.functionImg}></div>
+              <div className={styles.functionImgGraph}></div>
               <div className={styles.functionName}>スコア分析</div>
             </div>
           </div>
