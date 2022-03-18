@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import {
   registerCourse,
   selectSettedCoursenamelist,
+  setViewFlag,
 } from "../../app/courseSlice";
 import {
   selectScoreList,
@@ -52,8 +53,6 @@ const AllScore: React.FC = () => {
       const courseName: any = settedCourseNameList.filter(
         (courseItem: any) => courseItem.id === courseId
       );
-      console.log(item);
-      console.log(courseName);
       return (
         <tr>
           <td>{createDate}</td>
@@ -64,6 +63,7 @@ const AllScore: React.FC = () => {
               const data = item;
               const courseinfo = courseName[0];
               setScore([data, courseinfo]);
+              dispatch(setViewFlag(true));
             }}
           >
             <Link to={Path.viewScore}>リンク</Link>

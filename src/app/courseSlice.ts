@@ -8,6 +8,7 @@ export interface CourseState {
     parNumber: Array<Number>;
   };
   settedCourseNamelist: Array<string>;
+  viewFlag: boolean;
 }
 
 const initialState: CourseState = {
@@ -16,6 +17,7 @@ const initialState: CourseState = {
     parNumber: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   settedCourseNamelist: [],
+  viewFlag: false,
 };
 
 export const courseSlice = createSlice({
@@ -39,6 +41,9 @@ export const courseSlice = createSlice({
     setCourseNameList: (state, action) => {
       state.settedCourseNamelist = action.payload;
     },
+    setViewFlag: (state, action) => {
+      state.viewFlag = action.payload;
+    },
   },
 });
 
@@ -48,6 +53,7 @@ export const {
   registerParNumber,
   setCourseNameList,
   setParNumber,
+  setViewFlag,
 } = courseSlice.actions;
 
 export const selectCourse = (state: RootState): CourseState["course"] =>
@@ -55,5 +61,7 @@ export const selectCourse = (state: RootState): CourseState["course"] =>
 export const selectSettedCoursenamelist = (
   state: RootState
 ): CourseState["settedCourseNamelist"] => state.course.settedCourseNamelist;
+export const selectViewFlag = (state: RootState): CourseState["viewFlag"] =>
+  state.course.viewFlag;
 
 export default courseSlice.reducer;
