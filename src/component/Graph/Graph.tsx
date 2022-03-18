@@ -69,15 +69,15 @@ const Graph: React.FC = () => {
   };
   const setScoreAve = () => {
     const score = reverseScoreList.reverse();
-    if (score.length >= 10) {
+    if (score.length >= 5) {
       const scoreAveList = scoreList.map((item, i) => {
         let resData = 0;
-        if (scoreList.length - i >= 10) {
-          for (let l = 0; l < 10; l++) {
+        if (scoreList.length - i >= 5) {
+          for (let l = 0; l < 5; l++) {
             resData += scoreList[i + l].sumScore;
           }
           return {
-            data: Math.round(resData / 10),
+            data: Math.round(resData / 5),
             index: i,
             createdAt: item.scoreCreatedAt,
           };
@@ -97,7 +97,7 @@ const Graph: React.FC = () => {
         return { create: item.createdAt, score: item.data };
       });
       setData(setAveScore);
-      setLabel("10コーススコア平均");
+      setLabel("5コースのスコア平均");
     } else {
       const scoreAveList = scoreList.map((item, i) => {
         let resData = 0;
@@ -114,7 +114,7 @@ const Graph: React.FC = () => {
         return { create: item.createdAt, score: item.data };
       });
       setData(setAveScore);
-      setLabel("10コーススコア平均");
+      setLabel("5コースのスコア平均");
     }
   };
 
@@ -174,7 +174,7 @@ const Graph: React.FC = () => {
               size="large"
               onClick={setScoreAve}
             >
-              10コース平均
+              5コース平均
             </Button>
           </div>
         </div>
