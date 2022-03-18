@@ -67,6 +67,56 @@ const Graph: React.FC = () => {
     setData(setEditData);
     setLabel("スコア");
   };
+  const setScoreAve = () => {
+    const score = reverseScoreList.reverse();
+    if (score.length >= 10) {
+      const scoreAveList = scoreList.map((item, i) => {
+        let resData = 0;
+        if (scoreList.length - i >= 10) {
+          for (let l = 0; l < 10; l++) {
+            resData += scoreList[i + l].sumScore;
+          }
+          return {
+            data: Math.round(resData / 10),
+            index: i,
+            createdAt: item.scoreCreatedAt,
+          };
+        } else {
+          let resData = 0;
+          for (let l = i; l < scoreList.length; l++) {
+            resData += scoreList[l].sumScore;
+          }
+          return {
+            data: Math.round(resData / (scoreList.length - i)),
+            index: i,
+            createdAt: item.scoreCreatedAt,
+          };
+        }
+      });
+      const setAveScore: any = scoreAveList.reverse().map((item: any) => {
+        return { create: item.createdAt, score: item.data };
+      });
+      setData(setAveScore);
+      setLabel("10コーススコア平均");
+    } else {
+      const scoreAveList = scoreList.map((item, i) => {
+        let resData = 0;
+        for (let l = i; l < scoreList.length; l++) {
+          resData += scoreList[l].sumScore;
+        }
+        return {
+          data: Math.round(resData / (scoreList.length - i)),
+          index: i,
+          createdAt: item.scoreCreatedAt,
+        };
+      });
+      const setAveScore: any = scoreAveList.reverse().map((item: any) => {
+        return { create: item.createdAt, score: item.data };
+      });
+      setData(setAveScore);
+      setLabel("10コーススコア平均");
+    }
+  };
 
   return (
     <div className={styles.root}>
@@ -94,7 +144,7 @@ const Graph: React.FC = () => {
       </div>
       <div className={styles.editWrapper}>
         <div className={styles.button}>
-          <div className={styles.edit}>
+          <div className={styles.score}>
             <Button
               variant="contained"
               disableElevation
@@ -105,7 +155,7 @@ const Graph: React.FC = () => {
               スコア
             </Button>
           </div>
-          <div className={styles.delete}>
+          <div className={styles.patAve}>
             <Button
               variant="contained"
               disableElevation
@@ -114,6 +164,17 @@ const Graph: React.FC = () => {
               onClick={setGraphParAve}
             >
               パット平均
+            </Button>
+          </div>
+          <div className={styles.scoreAve}>
+            <Button
+              variant="contained"
+              disableElevation
+              color="success"
+              size="large"
+              onClick={setScoreAve}
+            >
+              10コース平均
             </Button>
           </div>
         </div>
