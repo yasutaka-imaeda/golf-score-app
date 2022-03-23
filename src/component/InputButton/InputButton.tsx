@@ -3,17 +3,23 @@ import { API, graphqlOperation } from "aws-amplify";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import styles from "./InputButton.module.scss";
 import Button from "@mui/material/Button";
-import { selectCourse, setCourseNameList, setParNumber } from "../../app/courseSlice";
 import {
+  selectCourse,
+  setCourseNameList,
+  setParNumber,
+} from "../../app/courseSlice";
+import {
+  selectCreateScoreDate,
   selectScore,
   selectScoreStatistics,
   setRegisterScore,
   setRegisterScoreList,
+  setScoreCreateDate,
   setSumData,
 } from "../../app/scoreSlice";
 import { selectUser } from "../../app/userSlice";
 import { createCourse, createScore } from "../../graphql/mutations";
-import { listCourses, scoreByUser } from "../../graphql/queries";
+import { listCourses, scoreByUserByScoreDate } from "../../graphql/queries";
 
 const InputButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +27,7 @@ const InputButton: React.FC = () => {
   const courseInfo: any = useAppSelector(selectCourse);
   const userInfo: any = useAppSelector(selectUser);
   const sumData: any = useAppSelector(selectScoreStatistics);
+  const createScoreDate: any = useAppSelector(selectCreateScoreDate);
   const sumScore = holeScore.reduce((sum: any, hole: any) => {
     return sum + hole.score;
   }, 0);
@@ -174,18 +181,20 @@ const InputButton: React.FC = () => {
           courseScoreId: courseId,
           sumScore: sumData.sumScore,
           sumPat: sumData.sumPat,
+          scoreDate: createScoreDate,
         },
       })
     );
     dispatch(setRegisterScore(resetData));
     dispatch(setParNumber(resetParNumberData));
+    dispatch(setScoreCreateDate(""));
     const scoreList: any = await API.graphql(
-      graphqlOperation(scoreByUser, {
+      graphqlOperation(scoreByUserByScoreDate, {
         userId: userInfo.user.id,
         sortDirection: "DESC",
       })
     );
-    dispatch(setRegisterScoreList(scoreList.data.scoreByUser.items));
+    dispatch(setRegisterScoreList(scoreList.data.scoreByUserByScoreDate.items));
     const filterdata = {
       userId: {
         eq: userInfo.user.id,

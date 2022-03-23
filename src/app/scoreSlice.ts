@@ -80,6 +80,7 @@ export interface ScoreState {
   ];
   scoreStatistics: { sumScore: number; sumPat: number; avePat: number };
   selectScoreId: string;
+  createScoreDate: string;
 }
 
 const initialState: ScoreState = {
@@ -160,6 +161,7 @@ const initialState: ScoreState = {
   ],
   scoreStatistics: { sumScore: 0, sumPat: 0, avePat: 0 },
   selectScoreId: "",
+  createScoreDate: "",
 };
 
 export const scoreSlice = createSlice({
@@ -200,6 +202,9 @@ export const scoreSlice = createSlice({
     setSelectScoreId: (state, action) => {
       state.selectScoreId = action.payload;
     },
+    setScoreCreateDate: (state, action) => {
+      state.createScoreDate = action.payload;
+    },
   },
 });
 
@@ -213,16 +218,21 @@ export const {
   setRegisterScoreList,
   setSumData,
   setSelectScoreId,
+  setScoreCreateDate,
 } = scoreSlice.actions;
 
 export const selectScore = (state: RootState): ScoreState["score"] =>
   state.score.score;
 export const selectScoreList = (state: RootState): ScoreState["scorelist"] =>
   state.score.scorelist;
-  export const selectScoreStatistics = (
-    state: RootState
-    ): ScoreState["scoreStatistics"] => state.score.scoreStatistics;
-    export const selectSelectScoreId = (state: RootState): ScoreState["selectScoreId"] =>
-      state.score.selectScoreId;
+export const selectScoreStatistics = (
+  state: RootState
+): ScoreState["scoreStatistics"] => state.score.scoreStatistics;
+export const selectSelectScoreId = (
+  state: RootState
+): ScoreState["selectScoreId"] => state.score.selectScoreId;
+export const selectCreateScoreDate = (
+  state: RootState
+): ScoreState["createScoreDate"] => state.score.createScoreDate;
 
 export default scoreSlice.reducer;

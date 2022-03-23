@@ -2,11 +2,15 @@
   .container {
     .header {
     }
-    .courseName {
-      margin-top: 4px;
-      margin-left: 8px;
-      font-size: 36px;
-      font-weight: bold;
+    .courseAndDateWrapper {
+      display: flex;
+      .courseName {
+        margin-top: 4px;
+        margin-left: 8px;
+        margin-right: 100px;
+        font-size: 36px;
+        font-weight: bold;
+      }
     }
     .inputScore {
       .halfCourse {

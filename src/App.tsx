@@ -8,7 +8,7 @@ import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
 import { useAppDispatch } from "./app/hooks";
 import { registerUser } from "./app/userSlice";
-import { listCourses, listUsers, scoreByUser } from "./graphql/queries";
+import { listCourses, listUsers, scoreByUserByScoreDate } from "./graphql/queries";
 import { createUser } from "./graphql/mutations";
 import { setRegisterScoreList } from "./app/scoreSlice";
 import { setCourseNameList } from "./app/courseSlice";
@@ -57,13 +57,13 @@ const App: React.FC = () => {
       } else {
         dispatch(registerUser({ user: { id: userId, userName: userName } }));
         const scoreList: any = API.graphql(
-          graphqlOperation(scoreByUser, {
+          graphqlOperation(scoreByUserByScoreDate, {
             userId: userId,
             sortDirection: "DESC",
           })
         );
         scoreList.then((res: any) => {
-          dispatch(setRegisterScoreList(res.data.scoreByUser.items));
+          dispatch(setRegisterScoreList(res.data.scoreByUserByScoreDate.items));
         });
         const filter = {
           userId: {

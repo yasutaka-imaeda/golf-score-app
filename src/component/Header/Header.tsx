@@ -4,12 +4,16 @@ import { Path } from "../../Routes";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { AmplifySignOut } from "@aws-amplify/ui-react";
-import { setRegisterScore, setRegisterScoreList } from "../../app/scoreSlice";
+import {
+  setRegisterScore,
+  setRegisterScoreList,
+  setScoreCreateDate,
+} from "../../app/scoreSlice";
 import { setCourseNameList, setParNumber } from "../../app/courseSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectUser } from "../../app/userSlice";
 import { API, graphqlOperation } from "aws-amplify";
-import { listCourses, scoreByUser } from "../../graphql/queries";
+import { listCourses, scoreByUserByScoreDate } from "../../graphql/queries";
 
 const Header: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -112,13 +116,14 @@ const Header: React.FC = () => {
   const reset = async () => {
     dispatch(setRegisterScore(resetData));
     dispatch(setParNumber(resetParNumberData));
+    dispatch(setScoreCreateDate(""));
     const scoreList: any = await API.graphql(
-      graphqlOperation(scoreByUser, {
+      graphqlOperation(scoreByUserByScoreDate, {
         userId: userInfo.user.id,
         sortDirection: "DESC",
       })
     );
-    dispatch(setRegisterScoreList(scoreList.data.scoreByUser.items));
+    dispatch(setRegisterScoreList(scoreList.data.scoreByUserByScoreDate.items));
     const filter = {
       userId: {
         eq: userInfo.user.id,

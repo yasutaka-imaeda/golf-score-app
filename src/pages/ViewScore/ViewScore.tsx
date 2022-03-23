@@ -6,6 +6,7 @@ import ReactPaginate from "react-paginate";
 import { useAppSelector } from "../../app/hooks";
 import { selectCourse } from "../../app/courseSlice";
 import EditButton from "../../component/EditButton/EditButton";
+import Calender from "../../component/Calender/Calender";
 
 const ViewScore: React.FC = () => {
   const items: any = [1, 2];
@@ -99,7 +100,10 @@ const ViewScore: React.FC = () => {
         <div className={styles.header}>
           <Header />
         </div>
-        <div className={styles.courseName}>{courseName.courseName}</div>
+        <div className={styles.courseAndDateWrapper}>
+          <div className={styles.courseName}>{courseName.courseName}</div>
+          <Calender />
+        </div>
         <div className={styles.inputScore}>
           <PaginatedItems itemsPerPage={1} />
         </div>

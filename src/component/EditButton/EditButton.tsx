@@ -5,10 +5,12 @@ import styles from "./EditButton.module.scss";
 import Button from "@mui/material/Button";
 import {
   registerScore,
+  selectCreateScoreDate,
   selectScore,
   selectScoreStatistics,
   selectSelectScoreId,
   setRegisterScore,
+  setScoreCreateDate,
   setSumData,
 } from "../../app/scoreSlice";
 import { deleteScore, updateScore } from "../../graphql/mutations";
@@ -17,6 +19,7 @@ import { setParNumber } from "../../app/courseSlice";
 const EditButton: React.FC = () => {
   const dispatch = useAppDispatch();
   const holeScore: any = useAppSelector(selectScore);
+  const createScoreDate: any = useAppSelector(selectCreateScoreDate);
   const sumData: any = useAppSelector(selectScoreStatistics);
   const scoreId: any = useAppSelector(selectSelectScoreId);
   const sumScore = holeScore.reduce((sum: any, hole: any) => {
@@ -134,6 +137,7 @@ const EditButton: React.FC = () => {
     );
     dispatch(setRegisterScore(resetData));
     dispatch(setParNumber(resetParNumberData));
+    dispatch(setScoreCreateDate(""));
   };
 
   const onEditScore = async () => {
@@ -144,6 +148,7 @@ const EditButton: React.FC = () => {
           score: JSON.stringify(holeScore),
           sumScore: sumData.sumScore,
           sumPat: sumData.sumPat,
+          scoreDate: createScoreDate,
         },
       })
     );

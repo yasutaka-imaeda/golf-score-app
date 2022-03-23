@@ -11,6 +11,7 @@ import {
 import {
   selectScoreList,
   setRegisterScore,
+  setScoreCreateDate,
   setSelectScoreId,
 } from "../../app/scoreSlice";
 
@@ -42,12 +43,13 @@ const AllScore: React.FC = () => {
   const viewScorelist: any = settedScoreList.map((item: any) => {
     if (item.id !== undefined) {
       const japanTime = new Date(item.createdAt);
+      const ScoreDate = item.scoreDate;
       const getFullYear = String(japanTime.getFullYear());
       const getMonth = checkForOneLetter(String(japanTime.getMonth() + 1));
       const getDate = checkForOneLetter(String(japanTime.getDate()));
       const createJapanTime = `${getFullYear}/${getMonth}/${getDate}`;
 
-      const createDate: any = createJapanTime;
+      const createDate: any = ScoreDate;
       const sumScore: any = item.sumScore;
       const courseId: any = item.courseScoreId;
       const courseName: any = settedCourseNameList.filter(
@@ -64,6 +66,7 @@ const AllScore: React.FC = () => {
               const courseinfo = courseName[0];
               setScore([data, courseinfo]);
               dispatch(setViewFlag(true));
+              dispatch(setScoreCreateDate(createDate));
             }}
           >
             <Link to={Path.viewScore}>リンク</Link>

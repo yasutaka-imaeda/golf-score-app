@@ -28,6 +28,7 @@ const Graph: React.FC = () => {
   const scoreList = setScoreList.map((item: any) => {
     if (item.id !== undefined) {
       const japanTime = new Date(item.createdAt);
+      const ScoreDate = item.scoreDate;
       const getFullYear = String(japanTime.getFullYear());
       const getMonth = checkForOneLetter(String(japanTime.getMonth() + 1));
       const getDate = checkForOneLetter(String(japanTime.getDate()));
@@ -36,7 +37,7 @@ const Graph: React.FC = () => {
         scoreData: JSON.parse(item.score),
         sumScore: item.sumScore,
         sumPat: item.sumPat,
-        scoreCreatedAt: createJapanTime,
+        scoreCreatedAt: ScoreDate,
       };
     } else {
       return {};
