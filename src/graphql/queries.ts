@@ -72,6 +72,7 @@ export const getScore = /* GraphQL */ `
       sumOut
       sumIn
       sumPat
+      scoreDate
       createdAt
       updatedAt
       courseScoreId
@@ -93,6 +94,7 @@ export const listScores = /* GraphQL */ `
         sumOut
         sumIn
         sumPat
+        scoreDate
         createdAt
         updatedAt
         courseScoreId
@@ -117,6 +119,7 @@ export const getCourse = /* GraphQL */ `
           sumOut
           sumIn
           sumPat
+          scoreDate
           createdAt
           updatedAt
           courseScoreId
@@ -204,6 +207,41 @@ export const scoreByUser = /* GraphQL */ `
         sumOut
         sumIn
         sumPat
+        scoreDate
+        createdAt
+        updatedAt
+        courseScoreId
+      }
+      nextToken
+    }
+  }
+`;
+export const scoreByUserByScoreDate = /* GraphQL */ `
+  query ScoreByUserByScoreDate(
+    $userId: ID!
+    $scoreDate: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelScoreFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    scoreByUserByScoreDate(
+      userId: $userId
+      scoreDate: $scoreDate
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userId
+        score
+        sumScore
+        sumOut
+        sumIn
+        sumPat
+        scoreDate
         createdAt
         updatedAt
         courseScoreId

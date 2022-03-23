@@ -26,11 +26,17 @@ type Score @model {
       sortKeyFields: ["createdAt"]
       queryField: "scoreByUser"
     )
+    @index(
+      name: "byScoreDate"
+      sortKeyFields: ["scoreDate"]
+      queryField: "scoreByUserByScoreDate"
+    )
   score: String!
   sumScore: Int!
   sumOut: Int
   sumIn: Int
   sumPat: Int!
+  scoreDate: AWSDate
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }

@@ -102,6 +102,7 @@ export const createScore = /* GraphQL */ `
       sumOut
       sumIn
       sumPat
+      scoreDate
       createdAt
       updatedAt
       courseScoreId
@@ -121,6 +122,7 @@ export const updateScore = /* GraphQL */ `
       sumOut
       sumIn
       sumPat
+      scoreDate
       createdAt
       updatedAt
       courseScoreId
@@ -140,6 +142,7 @@ export const deleteScore = /* GraphQL */ `
       sumOut
       sumIn
       sumPat
+      scoreDate
       createdAt
       updatedAt
       courseScoreId
@@ -165,6 +168,7 @@ export const createCourse = /* GraphQL */ `
           sumOut
           sumIn
           sumPat
+          scoreDate
           createdAt
           updatedAt
           courseScoreId
@@ -195,6 +199,7 @@ export const updateCourse = /* GraphQL */ `
           sumOut
           sumIn
           sumPat
+          scoreDate
           createdAt
           updatedAt
           courseScoreId
@@ -225,6 +230,7 @@ export const deleteCourse = /* GraphQL */ `
           sumOut
           sumIn
           sumPat
+          scoreDate
           createdAt
           updatedAt
           courseScoreId
