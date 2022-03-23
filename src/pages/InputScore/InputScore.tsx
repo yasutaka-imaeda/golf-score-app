@@ -5,6 +5,7 @@ import InScoreOfOneHole from "../../component/InScoreOfOneHole/InScoreOfOneHole"
 import InputButton from "../../component/InputButton/InputButton";
 import styles from "./InputScore.module.scss";
 import ReactPaginate from "react-paginate";
+import Calender from "../../component/Calender/Calender";
 
 const InputScore: React.FC = () => {
   const items: any = [1, 2];
@@ -97,7 +98,10 @@ const InputScore: React.FC = () => {
         <div className={styles.header}>
           <Header />
         </div>
-        <InputCourse />
+        <div className={styles.courseAndDateWrapper}>
+          <InputCourse />
+          <Calender />
+        </div>
         <div className={styles.inputScore}>
           <PaginatedItems itemsPerPage={1} />
         </div>
