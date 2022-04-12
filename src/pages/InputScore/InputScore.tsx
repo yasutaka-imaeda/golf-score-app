@@ -10,6 +10,7 @@ import Calender from "../../component/Calender/Calender";
 const InputScore: React.FC = () => {
   const items: any = [1, 2];
 
+
   const inputScores = ({ currentItems }: any) => {
     return (
       <div className={styles.scoreItem}>

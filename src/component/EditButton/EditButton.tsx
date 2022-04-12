@@ -14,7 +14,14 @@ import {
 } from "../../app/scoreSlice";
 import { deleteScore, updateScore } from "../../graphql/mutations";
 import { setParNumber } from "../../app/courseSlice";
-import { setIsDeleteModalOpen, setIsEditModalOpen } from "../../app/modalSlice";
+import {
+  selectIsDeleteModalOpen,
+  selectIsEditModalOpen,
+  setIsDeleteModalOpen,
+  setIsEditModalOpen,
+} from "../../app/modalSlice";
+import EditModal from "../Modal/EditModal";
+import DeleteModal from "../Modal/DeleteModal";
 
 const EditButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,6 +29,8 @@ const EditButton: React.FC = () => {
   const createScoreDate: any = useAppSelector(selectCreateScoreDate);
   const sumData: any = useAppSelector(selectScoreStatistics);
   const scoreId: any = useAppSelector(selectSelectScoreId);
+  const editModalOpen = useAppSelector(selectIsEditModalOpen);
+  const deleteModalOpen = useAppSelector(selectIsDeleteModalOpen);
   const sumScore = holeScore.reduce((sum: any, hole: any) => {
     return sum + hole.score;
   }, 0);
@@ -166,6 +175,8 @@ const EditButton: React.FC = () => {
 
   return (
     <div className={styles.root}>
+      <EditModal isModalOpen={editModalOpen} />
+      <DeleteModal isModalOpen={deleteModalOpen} />
       <div className={styles.sum}>スコア: {sumScore}</div>
       <div className={styles.sum}>パット平均: {avePat}</div>
       <div className={styles.button}>

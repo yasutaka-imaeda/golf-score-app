@@ -20,7 +20,11 @@ import {
 import { selectUser } from "../../app/userSlice";
 import { createCourse, createScore } from "../../graphql/mutations";
 import { listCourses, scoreByUserByScoreDate } from "../../graphql/queries";
-import { setIsCreateModalOpen } from "../../app/modalSlice";
+import {
+  selectIsCreateModalOpen,
+  setIsCreateModalOpen,
+} from "../../app/modalSlice";
+import CreateModal from "../Modal/CreateModal";
 
 const InputButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -29,6 +33,7 @@ const InputButton: React.FC = () => {
   const userInfo: any = useAppSelector(selectUser);
   const sumData: any = useAppSelector(selectScoreStatistics);
   const createScoreDate: any = useAppSelector(selectCreateScoreDate);
+  const isModalOpen = useAppSelector(selectIsCreateModalOpen);
   const sumScore = holeScore.reduce((sum: any, hole: any) => {
     return sum + hole.score;
   }, 0);
@@ -216,6 +221,7 @@ const InputButton: React.FC = () => {
 
   return (
     <div className={styles.root}>
+      <CreateModal isModalOpen={isModalOpen} />
       <div className={styles.sum}>スコア: {sumScore}</div>
       <div className={styles.sum}>パット平均: {avePat}</div>
       <Button
