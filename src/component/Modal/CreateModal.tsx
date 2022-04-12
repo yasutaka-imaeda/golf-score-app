@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import styles from "./CreateModal.module.scss";
 import { useAppDispatch } from "../../app/hooks";
 import { setIsCreateModalOpen } from "../../app/modalSlice";
 
@@ -35,8 +36,10 @@ const CreateModal: React.FC<Props> = ({ isModalOpen }) => {
       shouldCloseOnOverlayClick={true}
       style={customStyles}
     >
-      <div>スコア登録しました。</div>
-      <div onClick={onCloseButtonClick}>閉じる</div>
+      <div className={styles.text}>スコア登録しました。</div>
+      <div className={styles.button} onClick={onCloseButtonClick}>
+        閉じる
+      </div>
     </Modal>
   );
 };

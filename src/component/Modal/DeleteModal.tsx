@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import styles from "./DeleteModal.module.scss";
 import { useAppDispatch } from "../../app/hooks";
 import { setIsDeleteModalOpen } from "../../app/modalSlice";
 
@@ -35,8 +36,10 @@ const DeleteModal: React.FC<Props> = ({ isModalOpen }) => {
       shouldCloseOnOverlayClick={true}
       style={customStyles}
     >
-      <div>削除しました。</div>
-      <div onClick={onCloseButtonClick}>閉じる</div>
+      <div className={styles.text}>削除しました。</div>
+      <div className={styles.button} onClick={onCloseButtonClick}>
+        閉じる
+      </div>
     </Modal>
   );
 };
