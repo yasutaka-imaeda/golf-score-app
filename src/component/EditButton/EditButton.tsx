@@ -132,26 +132,34 @@ const EditButton: React.FC = () => {
   }, [dispatch, sumPat, sumScore]);
 
   const onDeleteScore = async () => {
-    await API.graphql(
-      graphqlOperation(deleteScore, { input: { id: scoreId } })
-    );
-    dispatch(setRegisterScore(resetData));
-    dispatch(setParNumber(resetParNumberData));
-    dispatch(setScoreCreateDate(""));
+    try {
+      await API.graphql(
+        graphqlOperation(deleteScore, { input: { id: scoreId } })
+      );
+      dispatch(setRegisterScore(resetData));
+      dispatch(setParNumber(resetParNumberData));
+      dispatch(setScoreCreateDate(""));
+    } catch {
+      window.alert("削除に失敗しました。");
+    }
   };
 
   const onEditScore = async () => {
-    await API.graphql(
-      graphqlOperation(updateScore, {
-        input: {
-          id: scoreId,
-          score: JSON.stringify(holeScore),
-          sumScore: sumData.sumScore,
-          sumPat: sumData.sumPat,
-          scoreDate: createScoreDate,
-        },
-      })
-    );
+    try {
+      await API.graphql(
+        graphqlOperation(updateScore, {
+          input: {
+            id: scoreId,
+            score: JSON.stringify(holeScore),
+            sumScore: sumData.sumScore,
+            sumPat: sumData.sumPat,
+            scoreDate: createScoreDate,
+          },
+        })
+      );
+    } catch {
+      window.alert("更新に失敗しました。");
+    }
   };
 
   return (

@@ -138,72 +138,78 @@ const InputButton: React.FC = () => {
   }, [dispatch, sumPat, sumScore, avePat]);
 
   const submitScore = async () => {
-    const filter = {
-      and: [
-        {
-          courseName: {
-            eq: courseInfo.courseName,
+    try {
+      const filter = {
+        and: [
+          {
+            courseName: {
+              eq: courseInfo.courseName,
+            },
           },
-        },
-        {
-          userId: {
-            eq: userInfo.user.id,
+          {
+            userId: {
+              eq: userInfo.user.id,
+            },
           },
-        },
-      ],
-    };
-    const listCourse: any = await API.graphql(
-      graphqlOperation(listCourses, { filter: filter })
-    );
-    let courseId;
-    if (listCourse.data.listCourses.items.length === 0) {
+        ],
+      };
+      const listCourse: any = await API.graphql(
+        graphqlOperation(listCourses, { filter: filter })
+      );
+      let courseId;
+      if (listCourse.data.listCourses.items.length === 0) {
+        await API.graphql(
+          graphqlOperation(createCourse, {
+            input: {
+              userId: userInfo.user.id,
+              courseName: courseInfo.courseName,
+              parNumber: courseInfo.parNumber,
+            },
+          })
+        );
+        const newCourse: any = await API.graphql(
+          graphqlOperation(listCourses, { filter: filter })
+        );
+        courseId = newCourse.data.listCourses.items[0].id;
+      } else {
+        courseId = listCourse.data.listCourses.items[0].id;
+      }
       await API.graphql(
-        graphqlOperation(createCourse, {
+        graphqlOperation(createScore, {
           input: {
             userId: userInfo.user.id,
-            courseName: courseInfo.courseName,
-            parNumber: courseInfo.parNumber,
+            score: JSON.stringify(holeScore),
+            courseScoreId: courseId,
+            sumScore: sumData.sumScore,
+            sumPat: sumData.sumPat,
+            scoreDate: createScoreDate,
           },
         })
       );
-      const newCourse: any = await API.graphql(
-        graphqlOperation(listCourses, { filter: filter })
-      );
-      courseId = newCourse.data.listCourses.items[0].id;
-    } else {
-      courseId = listCourse.data.listCourses.items[0].id;
-    }
-    await API.graphql(
-      graphqlOperation(createScore, {
-        input: {
+      dispatch(setRegisterScore(resetData));
+      dispatch(setParNumber(resetParNumberData));
+      dispatch(setScoreCreateDate(""));
+      const scoreList: any = await API.graphql(
+        graphqlOperation(scoreByUserByScoreDate, {
           userId: userInfo.user.id,
-          score: JSON.stringify(holeScore),
-          courseScoreId: courseId,
-          sumScore: sumData.sumScore,
-          sumPat: sumData.sumPat,
-          scoreDate: createScoreDate,
+          sortDirection: "DESC",
+        })
+      );
+      dispatch(
+        setRegisterScoreList(scoreList.data.scoreByUserByScoreDate.items)
+      );
+      const filterdata = {
+        userId: {
+          eq: userInfo.user.id,
         },
-      })
-    );
-    dispatch(setRegisterScore(resetData));
-    dispatch(setParNumber(resetParNumberData));
-    dispatch(setScoreCreateDate(""));
-    const scoreList: any = await API.graphql(
-      graphqlOperation(scoreByUserByScoreDate, {
-        userId: userInfo.user.id,
-        sortDirection: "DESC",
-      })
-    );
-    dispatch(setRegisterScoreList(scoreList.data.scoreByUserByScoreDate.items));
-    const filterdata = {
-      userId: {
-        eq: userInfo.user.id,
-      },
-    };
-    const course: any = await API.graphql(
-      graphqlOperation(listCourses, { filter: filterdata })
-    );
-    dispatch(setCourseNameList(course.data.listCourses.items));
+      };
+      const course: any = await API.graphql(
+        graphqlOperation(listCourses, { filter: filterdata })
+      );
+      dispatch(setCourseNameList(course.data.listCourses.items));
+    } catch {
+      window.alert("スコアの登録に失敗しました。");
+    }
   };
 
   return (
