@@ -20,6 +20,7 @@ import {
 import { selectUser } from "../../app/userSlice";
 import { createCourse, createScore } from "../../graphql/mutations";
 import { listCourses, scoreByUserByScoreDate } from "../../graphql/queries";
+import { setIsCreateModalOpen } from "../../app/modalSlice";
 
 const InputButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -207,6 +208,7 @@ const InputButton: React.FC = () => {
         graphqlOperation(listCourses, { filter: filterdata })
       );
       dispatch(setCourseNameList(course.data.listCourses.items));
+      dispatch(setIsCreateModalOpen(true));
     } catch {
       window.alert("スコアの登録に失敗しました。");
     }

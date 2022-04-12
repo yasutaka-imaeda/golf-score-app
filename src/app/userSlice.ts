@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 
 export interface UserState {

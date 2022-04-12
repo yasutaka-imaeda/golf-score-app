@@ -14,6 +14,7 @@ import {
 } from "../../app/scoreSlice";
 import { deleteScore, updateScore } from "../../graphql/mutations";
 import { setParNumber } from "../../app/courseSlice";
+import { setIsDeleteModalOpen, setIsEditModalOpen } from "../../app/modalSlice";
 
 const EditButton: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -138,6 +139,7 @@ const EditButton: React.FC = () => {
       dispatch(setRegisterScore(resetData));
       dispatch(setParNumber(resetParNumberData));
       dispatch(setScoreCreateDate(""));
+      dispatch(setIsDeleteModalOpen(true));
     } catch {
       window.alert("削除に失敗しました。");
     }
@@ -156,6 +158,7 @@ const EditButton: React.FC = () => {
           },
         })
       );
+      dispatch(setIsEditModalOpen(true));
     } catch {
       window.alert("更新に失敗しました。");
     }

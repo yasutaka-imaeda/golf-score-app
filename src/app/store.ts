@@ -3,6 +3,7 @@ import taskReducer from "./taskSlice";
 import userReducer from "./userSlice";
 import scoreReducer from "./scoreSlice";
 import courseReducer from "./courseSlice";
+import modalReducer from "./modalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     user: userReducer,
     score: scoreReducer,
     course: courseReducer,
+    modal: modalReducer,
   },
 });
 

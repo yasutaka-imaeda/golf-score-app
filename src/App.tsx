@@ -6,12 +6,22 @@ import Amplify, { API, graphqlOperation } from "aws-amplify";
 import { AmplifyAuthenticator, AmplifySignUp } from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
-import { useAppDispatch } from "./app/hooks";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { registerUser } from "./app/userSlice";
-import { listCourses, listUsers, scoreByUserByScoreDate } from "./graphql/queries";
+import {
+  listCourses,
+  listUsers,
+  scoreByUserByScoreDate,
+} from "./graphql/queries";
 import { createUser } from "./graphql/mutations";
 import { setRegisterScoreList } from "./app/scoreSlice";
 import { setCourseNameList } from "./app/courseSlice";
+// import {
+//   setIsCreateModalOpen,
+//   setIsDeleteModalOpen,
+//   setIsEditModalOpen,
+// } from "./app/modalSlice";
+// import ModalComponents from "./component/Modal/ModalComponents";
 
 Amplify.configure(awsconfig);
 
@@ -21,6 +31,9 @@ const App: React.FC = () => {
   const [user, setUser] = useState<any>();
   const [userId, setUserId] = useState<any>();
   const [checkUser, setCheckUser] = useState<any>(false);
+  // const isCreateModalOpen: any = useAppSelector(setIsCreateModalOpen);
+  // const isEditModalOpen: any = useAppSelector(setIsEditModalOpen);
+  // const isDeleteModalOpen: any = useAppSelector(setIsDeleteModalOpen);
   const searchUser = async (username: any) => {
     const filter = {
       golferName: {
@@ -80,10 +93,17 @@ const App: React.FC = () => {
     });
   };
 
+  // const createInfo = { isModalOpen: isCreateModalOpen, setModal: "create" };
+  // const editInfo = { isModalOpen: isEditModalOpen, setModal: "edit" };
+  // const deleteInfo = { isModalOpen: isDeleteModalOpen, setModal: "delete" };
+
   return authState === AuthState.SignedIn && user ? (
     <div className="App">
       {registerUserName(user.username)}
       <div className={styles.root}>
+        {/* <ModalComponents ModalInfo={createInfo} />
+        <ModalComponents ModalInfo={editInfo} />
+        <ModalComponents ModalInfo={deleteInfo} /> */}
         <div className={styles.component}>
           <BrowserRouter>
             <Routess />
