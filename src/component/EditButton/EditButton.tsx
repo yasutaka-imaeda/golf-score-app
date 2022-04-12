@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import styles from "./EditButton.module.scss";
 import Button from "@mui/material/Button";
 import {
-  registerScore,
   selectCreateScoreDate,
   selectScore,
   selectScoreStatistics,
@@ -129,7 +128,7 @@ const EditButton: React.FC = () => {
     dispatch(
       setSumData({ sumScore: sumScore, sumPat: sumPat, avePat: avePat })
     );
-  }, [dispatch, sumPat, sumScore]);
+  }, [dispatch, sumPat, sumScore, avePat]);
 
   const onDeleteScore = async () => {
     try {

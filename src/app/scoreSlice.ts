@@ -2,6 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 // import { useSelector } from "react-redux";
 import { RootState } from "./store";
 
+const today = new Date();
+const todayY = today.getFullYear();
+const todayM = ("00" + (today.getMonth() + 1)).slice(-2);
+const todayD = ("00" + today.getDate()).slice(-2);
+const dateData = todayY + "-" + todayM + "-" + todayD;
 export interface ScoreState {
   scorelist: [any];
   score: [
@@ -161,7 +166,7 @@ const initialState: ScoreState = {
   ],
   scoreStatistics: { sumScore: 0, sumPat: 0, avePat: 0 },
   selectScoreId: "",
-  createScoreDate: "",
+  createScoreDate: dateData,
 };
 
 export const scoreSlice = createSlice({
