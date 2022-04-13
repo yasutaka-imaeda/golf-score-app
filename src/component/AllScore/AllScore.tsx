@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./AllScore.module.scss";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Path } from "../../Routes";
@@ -19,6 +19,26 @@ const AllScore: React.FC = () => {
   const dispatch = useAppDispatch();
   const settedCourseNameList = useAppSelector(selectSettedCoursenamelist);
   const settedScoreList = useAppSelector(selectScoreList);
+  const [sumAveData, setSumAveData] = useState(0);
+  const [sumAvePatData, setSumAvePatData] = useState(0);
+
+  useEffect(() => {
+    let sum = 0;
+    let sumPattingNumber = 0;
+    settedScoreList.forEach((item: any) => {
+      sum += item.sumScore;
+      sumPattingNumber += item.sumPat;
+      const allScoreAve =
+        Math.round((sum / settedScoreList.length) * Math.pow(10, 2)) /
+        Math.pow(10, 2);
+      const allPatScoreAve =
+        Math.round(
+          (sumPattingNumber / settedScoreList.length / 18) * Math.pow(10, 2)
+        ) / Math.pow(10, 2);
+      setSumAveData(allScoreAve);
+      setSumAvePatData(allPatScoreAve);
+    });
+  }, []);
 
   const setScore = (data: any) => {
     const scoreData = JSON.parse(data[0].score);
@@ -80,16 +100,22 @@ const AllScore: React.FC = () => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.title}>スコア一覧</div>
-      <table className={styles.table}>
-        <tr>
-          <th>日時</th>
-          <th>コース名</th>
-          <th>スコア</th>
-          <th>リンク</th>
-        </tr>
-        {viewScorelist}
-      </table>
+      <div className={styles.scoreListWrapper}>
+        <div className={styles.title}>スコア一覧</div>
+        <table className={styles.table}>
+          <tr>
+            <th>日時</th>
+            <th>コース名</th>
+            <th>スコア</th>
+            <th>リンク</th>
+          </tr>
+          {viewScorelist}
+        </table>
+      </div>
+      <div className={styles.averageWrapper}>
+        <div className={styles.average}>・平均スコア：　　{sumAveData}</div>
+        <div className={styles.average}>・平均パット数：　{sumAvePatData}</div>
+      </div>
     </div>
   );
 };
